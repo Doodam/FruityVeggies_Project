@@ -18,9 +18,19 @@
 - 프로젝트 이름 : Fruity Veggies
 - 프로젝트 지속기간 : 2023.07.25 - 2023.08.24
 - 개발 엔진 및 언어 : Eclipse & JAVA(JDK 17) 
-- 개발 환경 : Spring Boot & Spring Security & Lombok & Oracle & jQuery & Ajax & HTML / CSS / Java Script & Thymeleaf & tosspayment api & Google, Naver, Kakao api
+- 개발 환경 : Spring Boot & Spring Security & Lombok & Oracle <br>
+　　　　　jQuery & Ajax & HTML / CSS / Java Script & Thymeleaf & Tosspayments 결제 api & Google, Naver, Kakao 로그인 api
 
 <br>
 
 ## 홈페이지 설명
-<img src= width="70%"/>
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/60baf9a7-65f5-4828-a235-0aae5e4d2ac5 width="70%"/>
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/235d6fe0-bd42-48fd-b871-9a7b869eb6bb width="70%"/>
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/1a8a89e5-8aa3-4cc2-b516-60e1c36a302d width="70%"/>
+
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/a1580d59-d486-4775-81d4-c94dd1309741 width="70%"/>
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/f6f40a5b-9268-44b7-a7d9-49790d2b5e30 width="70%"/>
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/057be56f-2d34-4428-97de-d5f34037434c width="70%"/>
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/baf68883-31b5-48f9-a533-1ab952a992ea width="70%"/>
+<img src= https://github.com/Doodam/FruityVeggies_Project/assets/121950964/8f31100f-22d5-450f-b345-99ef79ab7d56 width="70%"/>
+
