@@ -1,0 +1,8 @@
+@charset "UTF-8";
+
+    *{margin: 0; padding: 0;}
+    #lnb.fixed{position: fixed; left: 0; top: 0; width: 100%; text-align: center;}
+    #lnb.fixed nav{background: white; padding-left: 100px}
+    #lnb.fixed nav a{font-size:18px; font-weight:900; background: white; }
+    #lnb.fixed a{display: inline-block; vertical-align: top; width: 10%; padding: 0 0 0 0; font-size: 10px; font-weight:200; color:black; text-align: center; background: white;z-index: 1;}
+    #container{width:100%; font-size: 10px; background: blue; text-align: center;}

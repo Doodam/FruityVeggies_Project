@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    
+    <th:block layout:fragment="mycss">
+    <link rel="stylesheet" th:href="@{/css/recipe.css}"}>
+    </th:block>    
+    
+   <main layout:fragment="main">
+        <div class="my-2 card">
+            <div class="card-header text-center" >
+                <h1>레시피 작성</h1>
+            </div>
+            <!-- 후기작성 적립금 안내 -->
+            <img alt="recipe-point-info" src="/img/info.webp">
+            
+            <div class="card-body">
+            <form method="post" id="formRe" encType="multipart/form-data">
+            <div class="multiple-upload">
+                    <img alt="대표 이미지 업로드" src="/img/recipe-image-upload.svg" id="uploadImage" style="cursor: pointer;">
+                    <input type="file" name="uploadFile" id="fileInput">
+                    
+                    <!-- 이미지 미리보기 -->
+                    <img id="previewImage" src="#" alt="Image Preview" style="display: none;">
+            </div>
+                
+                    <div class="my-2">
+                        <input class="form-control" id="title"
+                            type="text" name="title"  placeholder="레시피의 이름이 무엇인가요?"/>
+                        <p class="font-body" id="CurrentTextLengthInput" style="line-height: 1;">0/20</p>
+                    </div>
+                    <div class="my-2">
+                        <!-- required 레시피랑 레시피설명에 넣기 -->
+                        <textarea class="form-control" id="content" name="content" placeholder="레시피에 대한 간단한 설명을 덧붙여주세요."></textarea>
+                        <p class="font-body" id="CurrentTextLengthTextarea" style="line-height: 1;">0/240</p>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="my-2">
+                        <label class="form-label" for="title">예상 소요 시간*</label>
+                        <br/>
+                        <input class="radio_input" type="radio" id="cooking_time1" name="cooking_time" value="15분" />
+                        <label for="cooking_time1">15분 컷</label>
+                        <input class="radio_input" type="radio" id="cooking_time2" name="cooking_time" value="30분" />
+                        <label for="cooking_time2">30분 컷</label>
+                        <input class="radio_input" type="radio" id="cooking_time3" name="cooking_time" value="45분" />
+                        <label for="cooking_time3">45분 컷</label>
+                        <input class="radio_input" type="radio" id="cooking_time4" name="cooking_time" value="45분 이상" />
+                        <label for="cooking_time4">45분 이상</label>
+                    </div>
+                   
+                    <hr>
+                    <div class="my-2">
+                        <label class="form-label" for="category">카테고리*</label>
+                        <div class="d-flex">
+                             <select class="form-select me-3" name="category_main" aria-label="Default select example">
+                                 <option selected>요리 분류</option>
+                                 <option value="한식 ·">한식</option>
+                                 <option value="중식 ·">중식</option>
+                                 <option value="양식 ·">양식</option>
+                                 <option value="일식 ·">일식</option>
+                                 <option value="분식 ·">분식</option>
+                                 <option value="베이킹 ·">베이킹</option>
+                             </select>
+                             <select class="form-select" name="category_sub" aria-label="Default select example">
+                                 <option selected>요리 종류</option>
+                                 <option value="덮밥·볶음밥">덮밥·볶음밥</option>
+                                 <option value="면요리">면요리</option>
+                                 <option value="샐러드">샐러드</option>
+                                 <option value="밑반찬">밑반찬</option>
+                                 <option value="찌개·국">찌개·국</option>
+                                 <option value="조림">조림</option>
+                                 <option value="찜">찜</option>
+                                 <option value="전·튀김">전·튀김</option>
+                                 <option value="디저트">디저트</option>
+                                 <option value="구이">구이</option>
+                                 <option value="기타">기타</option>
+                             </select>
+                         </div>
+                    </div>
+                    <hr>
+                    <div class="my-2">
+                        <label class="form-label" for="hashtag">해시태그</label>
+                        <br/>
+                        <input type="checkbox" name="hashtag" id="hashtag1" value="비건"> 
+                            <label for="btnTag1">비건</label>
+                        <input type="checkbox" name="hashtag" id="hashtag2" value="간단요리"> 
+                            <label for="btnTag2">간단요리</label>
+                        <input type="checkbox" name="hashtag" id="hashtag3" value="다이어트요리"> 
+                            <label for="btnTag3">다이어트요리</label>
+                        <input type="checkbox" name="hashtag" id="hashtag4" value="건강식"> 
+                            <label for="btnTag4">건강식</label>
+                        <input type="checkbox" name="hashtag" id="hashtag5" value="든든한"> 
+                            <label for="btnTag5">든든한</label>
+                        <input type="checkbox" name="hashtag" id="hashtag6" value="집밥"> 
+                            <label for="btnTag6">집밥</label>
+                        <input type="checkbox" name="hashtag" id="hashtag7" value="냉장고털이"> 
+                            <label for="btnTag7">냉장고털이</label>
+                    </div>
+                    
+                    <hr class="h-14px bg-gray-0">
+
+                    <div>
+                        <label class="form-label" for="reference_amount">기준량*</label>
+                        <br/>
+                        <div class="d-flex">
+                           
+                           <input type='button' id="plusInput" class="flex-center mx-2" onclick='count("plus")'value='+'/>
+                           <div id='result'>0</div>
+                           <input type='button' id="minusInput" class="flex-center mx-2" onclick='count("minus")'value='-'/>
+                           <p class="flex-center"> 인분</p>
+                           
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div id="ingredientContainer">
+                        <label class="form-label" for="Required_Ingredients">필수재료*</label>
+                        
+                        <div class="d-flex" >
+                            
+                            <input class="form-control" id="Required_Ingredients1"
+                                type="text" name="reqIngredNames" placeholder="예) 당근"/>
+                            <input class="form-control" id="Required_Ingredients2"
+                                type="text" name="reqIngredAmounts" required  placeholder="예) 1개"/>
+                            
+                        </div>
+                        <br>
+                            <button id="btnReq">추가</button>
+                    </div>
+                    <div id="AddIngredIentContainer">
+                        <label class="form-label" for="Additional_Ingredients">부재료</label>
+                    <br>
+                        <button id="btnAdd">추가</button>
+                    </div>
+                    <div id="SeaningIngredientContainer">
+                        <label class="form-label" for="Seaning">양념</label>
+                        <br>
+                        <button id="btnSeaning">추가</button>
+                    </div>
+                    
+                    <hr class="h-14px bg-gray-0">
+                    
+                    
+                    <div>
+                        <label class="form-label" for="making">만드는 방법*</label>
+                        <div class="flex flex-row items-center">
+                            <textarea rows="1" name="making" id="making" placeholder="만드는 방법을 입력하세요." class="form-control"></textarea>
+                            <span id="CurrentTextLengthSpan">0/150</span>
+                        </div>
+                        
+                            <div id="recipe-image-upload">
+                                <input type="file" id="recipeUploadInput" >
+                                <img id="recipeUpload" src="/img/save.svg" alt="plus-icon" style="cursor: pointer;">
+                                
+                                <!-- 이미지 미리보기 -->
+                                <img id="preImage" src="#" alt="Image Preview" style="display: none;"> 
+                                
+                            </div>
+                   
+                        
+                    </div>
+                    
+                    <div id="makingContainer">
+                        <button id="btnStep">단계추가</button>
+                    </div>
+                    
+                    <div id="TipContainer">
+                        <button id="btnTip">TIP추가</button>
+                    </div>
+                    
+                    <div class="d-none">
+                        <label class="form-label" for="author">작성자</label>
+                        <input class="form-control" id="author"
+                            type="text" name="author" th:value="${ #authentication.name }" />
+                    </div>
+                    <div class="my-2">
+                        <input id="btnSave"  class="form-control btn btn-outline-success" 
+                            type="submit" value="작성 완료" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<th:block layout:fragment="myscripts">
+        <script src="/js/recipe/recipe.js"></script>
+</th:block>
+
+    
+</html>

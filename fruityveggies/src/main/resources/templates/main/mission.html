@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    <th:block layout:fragment="mycss">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/blog.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/blog.rtl.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/heroes.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/grid.css}" />
+    </th:block>    
+<head>
+    <style>
+    div.pb-33{
+        padding-left:200px;
+        padding-right: 200px;
+    }
+    </style>
+    
+    <style>
+            .jb-wrap {
+                margin: 0px auto;
+                position: relative;
+            }
+            .jb-wrap img{
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+                vertical-align: middle;
+                filter: grayscale(80%); /* 100%는 완전 회색으로 만듭니다. 0%는 원래 색상을 유지합니다. */
+            }
+            .jb-text {
+                position: absolute;
+                top: 0px;
+                width: 100%;
+                height: 100%;
+            }
+            .jb-text-table {
+                display: table;
+                width: 100%;
+                height: 100%;
+            }
+            .jb-text-table-row {
+                display: table-row;
+            }
+            .jb-text-table-cell {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .jb-text .img-txt {                
+                margin: 0px 40px;
+                padding: 10px;
+                text-align: center;
+                color: white;
+                font-weight: bold;
+                font-size:18px;
+                line-height: 27px; 
+                text-shadow:1px 1px 1px #000;
+            }
+            .jb-text .video-txt {                
+                margin: 0px 40px;
+                padding: 10px;
+                text-align: center;
+                color: white;
+                font-weight: 900;
+                font-size:23px;
+                line-height: 43px; 
+                text-shadow:1px 1px 1px #000;
+            }
+            
+            .display-5 {
+                font-size: 2.0rem;
+                line-height: 1.2;
+            }
+            
+            .fw-bold {
+                font-weight: bold;
+            }
+            
+            .text-body-emphasis {
+                color: #6c757d;
+            }
+        </style>
+</head>    
+    <main layout:fragment="main" class="container" >
+<!-- 동영상 시작-->
+    <div class="jb-wrap">
+        <div class="jb-image">
+            <video id="myVideo" style=" width:100%; height: 280px; object-fit: cover; vertical-align: middle;" autoplay loop>
+                <source src="https://uglyus.s3.ap-northeast-2.amazonaws.com/assets/mission/pc_mission-header.mp4" type="video/mp4">
+            </video>
+        <div class="jb-text">
+            <div class="jb-text-table">
+                <div class="jb-text-table-row">
+                    <div class="jb-text-table-cell video-txt">
+                        <p> 
+                            <label style="font-size: 16px;line-height: 24px;">우리의 미션</label><br>
+                            지속 가능한 식탁을<br>
+                            만듭니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+<!-- 동영상 끝-->
+<!-- 못난이 농산물 구출 시작-->
+<div class="px-4 py-5 my-5 text-center">
+    <p class="display-5 fw-bold text-body-emphasis" >못난이 농산물 구출이 <br> 어떤 변화를 만들고 있을까요?</p>
+    <div class="row mb-3 text-center">
+    <div class="col-md-4 themed-grid-col">구출한 농산물<br>555,098kg</div>
+      <div class="col-md-8 themed-grid-col" >
+        <div class="pb-33">
+          <span style="float: left;">아낀 물의 양</span>
+          <span style="float: right;">11,213</span>
+        </div>
+        <div>&nbsp;</div>
+        <div class="pb-33">
+          <span style="float: left;">아낀 플라스틱 수</span>
+          <span style="float: right;">208,508</span>
+        </div>
+        <div>&nbsp;</div>
+        <div class="pb-33">
+          <span style="float: left;">절감한 탄소</span>
+          <span style="float: right;">331,893</span>
+        </div>
+      </div>
+       <div class="w-full" style="height: 32px;"></div>
+    <p class="text-18px leading-[28.8px] text-gray-800 sm:text-center">농산물의 폐기는 유통과 소비 모든 단계에서 사회적 손실을 야기합니다.<br>
+        <span class="font-bold">어글리어스는 불필요한 낭비를 줄여 환경 보호에 기여하고, 농부의 노력에 대한 정당한 보상을 제공합니다.</span>
+    </p>      
+    </div>
+<!-- 배추 그림 시작-->   
+    <div class="jb-wrap">
+        <div class="jb-image">
+            <img src="https://d3cpiew7rze14b.cloudfront.net/assets/mission/korea_cabbage.png" alt=""></div>
+        <div class="jb-text">
+            <div class="jb-text-table">
+                <div class="jb-text-table-row">
+                    <div class="jb-text-table-cell img-txt">
+                        <p> 지속가능한 농업을 지지함으로써<br>
+                            우리의 땅과 미래를 더 건강하게 만듭니다.<br>
+                            분명한 변화를 만듭니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 배추 그림 끝-->  
+<div class="w-full" style="height: 32px;"></div>
+
+<hr class="border-brand-1">  
+
+  </div>
+<!-- 못난이 농산물 구출 끝 -->
+<div class="w-full" style="height: 60px;"></div>
+  <hr class="border-brand-1"> 
+  <div class="w-full" style="height: 40px;"></div>
+<!-- 지구 온난화 시작 -->
+<p style="text-align: center; font-size: 34px; font-weight: bold; color: var(--brand-1); line-height: 44.2px;">
+    지구 온난화를 가속화시키는<br>농산물 폐기 문제
+</p>
+<div class="row mb-3">
+      <div class="col-6 themed-grid-col">
+        <div class="jb-wrap">
+        <div class="jb-image" >
+            <img src="https://d3cpiew7rze14b.cloudfront.net/assets/mission/potato.png" alt="" style="width: 640px; height: 560px; filter: grayscale(0%); border-radius: 10px;"></div>
+        <div class="jb-text">
+            <div class="jb-text-table">
+                <div class="jb-text-table-row">
+                    <div class="jb-text-table-cell img-txt">
+                        <p> 완벽한 외형이 아니란 이유로<br>
+                            버려지는 농산물이 전체 생산량의 1/3.<br>
+                            이는 전 세계적인 문제입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      </div>
+      <div class="col-6 themed-grid-col">
+        
+        <div class="col-md-8 themed-grid-col d-flex justify-content-center" style="margin-bottom: 20px;">
+    <div class="pb-3">
+        <p style="font-size: 18px; line-height: 28.8px; color: green;">소비자의 선택을 받기 위해, 그리고 대형 유통 체인 내의 관리 편의를 위해 균일하고 깨끗한 농산물들이 ‘정상품’으로 분류돼 시장으로 나오고, 나머지는 규격 외 농산물로 분류됩니다.<br><br>이 규격 외 농산물들은 맛도 영양도 다를 바 없지만, 크기가 조금 작거나 크거나 개성있다는 이유로 적절한 판로를 찾기가 어렵습니다.<br></p>
+    </div>
+</div>
+<div class="row text-center" style="margin-left: -15px; margin-right: -15px;">
+    <div class="col-md-6 themed-grid-col">
+        <div class="grid h-178px grid-cols-2 overflow-hidden rounded-10px"> 
+            <img src="https://d3cpiew7rze14b.cloudfront.net/assets/mission/climate.png?h=237" style="border-radius: 10px;" alt="감자 밭">
+        </div>
+        
+    </div>
+    <div class="col-md-6 themed-grid-col" >
+        <div class="grid h-178px grid-cols-2 overflow-hidden rounded-10px">
+            <img src="https://d3cpiew7rze14b.cloudfront.net/assets/mission/potato_stream.png" style="border-radius: 10px;" alt="감자 밭">
+        </div>
+    </div>
+    </div>
+      </div>
+</div>
+<!-- 지구 온난화 끝 -->
+<div class="w-full" style="height: 60px;"></div>
+  <hr class="border-brand-1"> 
+  <div class="w-full" style="height: 40px;"></div>
+<!-- 불필요한 낭비 시작 -->
+<p style="text-align: center; font-size: 34px; font-weight: bold; color: var(--brand-1); line-height: 44.2px;">
+    불필요한 낭비를 막습니다<br>농산물의 가치 기준을 바꿉니다
+</p>
+    <div class="jb-wrap">
+        <div class="jb-image">
+            <img src="https://d3cpiew7rze14b.cloudfront.net/assets/mission/potato_mouse.png" alt="" style="border-radius: 10px; filter: grayscale(0%);"></div>
+        <div class="jb-text">
+            <div class="jb-text-table">
+                <div class="jb-text-table-row">
+                    <div class="jb-text-table-cell img-txt">
+                        <p> 지속가능한 농업을 지지함으로써<br>
+                            우리의 땅과 미래를 더 건강하게 만듭니다.<br>
+                            분명한 변화를 만듭니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+         
+	<div class="w-full" style="height: 32px;"></div>
+	
+    <p class="text-18px leading-[28.8px] text-gray-800 sm:text-center" style="
+    text-align: center;
+    color: green;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
+">건강하게 자란 농산물들이 외형으로 폐기되는 일이 없도록 발로 뛰고 알리며 제 가치를 찾습니다. <br>조금 작거나 크거나 거칠어도 같은 땅에서 자란 농산물의 본질에 집중합니다.<br><br>
+        <span class="font-bold">어글리어스는 불필요한 낭비를 줄여 환경 보호에 기여하고, 농부의 노력에 대한 정당한 보상을 제공합니다.</span>
+    </p>
+    </div>
+ 
+<!-- 불필요한 낭비 끝 -->
+<div class="w-full" style="height: 60px;"></div>
+  <hr class="border-brand-1"> 
+  <div class="w-full" style="height: 40px;"></div>
+  
+<!-- 생산부터 유통까지 환경을 생각합니다 시작-->
+<p style="text-align: center; font-size: 34px; font-weight: bold; color: var(--brand-1); line-height: 44.2px;">
+    생산부터 환경까지 유통을 생각 합니다.
+</p>
+
+<div class="container marketing">
+<div class="w-full" style="height: 40px;"></div>
+    <hr class="featurette-divider">
+ <div class="w-full" style="height: 40px;"></div>
+
+    <hr class="featurette-divider">
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div>
+<!-- 생산부터 유통까지 환경을 생각합니다 끝 -->  
+
+    </main>
+    
+    <th:block layout:fragment="myscripts">
+        <script src="/js/index.js"></script>
+    </th:block>
+    
+</html>

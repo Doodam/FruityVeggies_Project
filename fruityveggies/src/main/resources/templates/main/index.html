@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    <th:block layout:fragment="mycss">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/blog.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/blog.rtl.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/carousel.rtl.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/carousel.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/grid.css}" />
+    </th:block>   
+    
+    
+    <main layout:fragment="main" class="container" >
+         <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class="active" aria-current="true"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/rolling-banner/v3/pc-emergency-saving-79.png?h=560" alt="배경화면" loading="lazy" class="absolute inset-0 mx-auto object-cover h-[560px] w-[1280px]">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1 style="color: black;">못생겨도 맛있다. <br>친환경 못난이 채소박스</h1>
+            <p class="opacity-75"></p>
+            <p><a class="btn btn-success btn-primary" href="/main/market">채소 구출하기</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/rolling-banner/v3/pc-main.png?h=560" alt="배경화면" loading="lazy" class="absolute inset-0 mx-auto object-cover h-[560px] w-[1280px]" />
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1 style="color: black;">못생겨도 맛있다. <br>친환경 못난이 채소박스</h1>
+            <p class="opacity-75"></p>
+            <p><a class="btn btn-success btn-primary" href="/main/market">채소 구출하기</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item active">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/rolling-banner/v3/pc-user-survey.svg?h=560" alt="배경화면" loading="lazy" class="absolute inset-0 mx-auto object-cover h-[560px] w-[1280px]">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1 style="color: black;">못생겨도 맛있다. <br>친환경 못난이 채소박스</h1>
+            <p class="opacity-75"></p>
+            <p><a class="btn btn-success btn-primary" href="/main/market">채소 구출하기</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<div class="row">
+
+      <div class="col-lg-4" style="text-align: center;">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/mainVP-1.svg?w=300" alt="이미지" class="h-72px w-72px">
+        <div class="w-full" style="height: 24px;"></div>
+        <h2 class="fw-normal ">가장 소량씩 신선하게</h2>
+        <p>적은 양으로 부담없이 즐겨요.</p>
+      </div><!-- /.col-lg-4 -->
+      
+      
+      <div class="col-lg-4" style="text-align: center;">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/mainVP-2.svg?w=1024" alt="이미지" class="h-72px w-72px">
+        <div class="w-full" style="height: 24px;"></div>
+        <h2 class="fw-normal">친환경 채소를 저렴하게!</h2>
+        <p>30% OFF, 합리적인 가격으로 만나요!</p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4" style="text-align: center;">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/mainVP-3.svg?w=1024" alt="이미지" class="h-72px w-72px">
+        <div class="w-full" style="height: 24px;"></div>
+        <h2 class="fw-normal">환경에 한 발 나은 선택</h2>
+        <p>환경에 더 가까운 생산과 소비를 지지해요.</p>
+      </div><!-- /.col-lg-4 -->
+    </div>
+    <div class="w-full" style="height: 50px;"></div>
+
+  <div class="row mb-2" >
+          <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        개성있지만 싱싱해요.
+      </h3>
+      
+      <div class="w-full" style="height: 30px;"></div>
+      
+    <div class="col-md-6">
+    
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong>
+          <h3 class="mb-0">친환경 농법을 우선한 건강한 채소</h3>
+          <div class="mb-1 text-body-secondary">Nov 12</div>
+          <p class="card-text mb-auto">자연 그대로의 거친 껍질을 자랑해요</p>
+          <a href="/freshmarket/freshmarket?id=1" class="icon-link gap-1 icon-link-hover stretched-link">
+            상품 이동하기
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="https://uglyus.s3.ap-northeast-2.amazonaws.com/assets/main/main_vegetables_3.png" class="relative z-10 right-120px top-120px w-140px sm:w-220px sm:right-30px" style="transform: translateY(-8.23764%) translateZ(0px);padding-top: 20px;">
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="col-md-6">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong>
+          <h3 class="mb-0">지금 먹어야 할 제철 농산물</h3>
+          <div class="mb-1 text-body-secondary">Nov 12</div>
+          <p class="card-text mb-auto">땅 속에서 여러갈래로 뻗어 자랐어요.</p>
+          <a href="/freshmarket/freshmarket?id=2" class="icon-link gap-1 icon-link-hover stretched-link">
+            상품 이동하기
+          </a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="https://uglyus.s3.ap-northeast-2.amazonaws.com/assets/main/main_vegetables_6.png" class="relative z-10 right-120px top-120px w-140px sm:w-220px sm:right-30px" style="transform: translateY(-8.23764%) translateZ(0px);padding-top: 0px;padding-bottom: 450px;">
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="w-full" style="height: 50px;"></div>
+
+  <div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        지속 가능한 식탁
+      </h3>
+
+
+<div class="row">
+      <div class="col-lg-4">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/main_our_mission_1.png?w=140" alt="우리의 미션-1" sizes="md" draggable="false" class="h-290px w-296px sm:h-240px sm:w-240px">
+        <div class="w-full" style="height: 20px;"></div>
+        <p>못난이 농산물 구출이<br>어떤 변화를 만들고 있을까요?</p>
+        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/main_our_mission_2.png?w=140" alt="우리의 미션-1" sizes="md" draggable="false" class="h-290px w-296px sm:h-240px sm:w-240px">
+        <div class="w-full" style="height: 20px;"></div>
+        <p>예쁘지 않은 사과가<br>버려지면서 생기는 일</p>
+        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+      <div class="col-lg-4">
+        <img src="https://d3cpiew7rze14b.cloudfront.net/assets/main/main_our_mission_3.png?w=140" alt="우리의 미션-1" sizes="md" draggable="false" class="h-290px w-296px sm:h-240px sm:w-240px">
+        <div class="w-full" style="height: 20px;"></div>
+        <p>못난이 채소,<br>어디서 어떻게 오는가?</p>
+        <p><a class="btn btn-secondary" href="#">View details »</a></p>
+      </div><!-- /.col-lg-4 -->
+    </div>
+
+<div class="w-full" style="height: 50px;"></div>
+
+<br>
+<br>
+<br>
+<br>    
+<div class="w-full" style="height: 96px;"></div>
+
+<div class="flex w-full flex-col items-center px-4 sm:mx-auto sm:max-w-screen-lg">
+    <h2 class="text-center text-3xl font-bold leading-10 text-gray-800">36,189명의 구독자가 함께 하고 있어요!</h2>
+    <div class="w-full" style="height: 32px;"></div>
+</div>
+
+<div class="row mb-3 text-center" style="font-size: 21px; ">
+      <div class="col-6 themed-grid-col" >전체 만족도</div>
+      <div class="col-6 themed-grid-col">전체 후기 수</div>
+      <div class="col-6 themed-grid-col" style="color: green; ">4.9</div>
+      <div class="col-6 themed-grid-col" style="color: green;">2,369</div>
+</div>
+
+<div id="testbox">
+   <div class="test">
+      <div><img src="https://unsplash.it/330/250/?random=1" /></div>
+      <div><img src="https://unsplash.it/330/250/?random=2" /></div>
+      <div><img src="https://unsplash.it/330/250/?random=3" /></div>
+      <div><img src="https://unsplash.it/330/250/?random=4" /></div>
+      <div><img src="https://unsplash.it/330/250/?random=5" /></div>
+      <div><img src="https://unsplash.it/330/250/?random=6" /></div>
+      <div><img src="https://unsplash.it/330/250/?random=7" /></div>
+      <div><img src="https://unsplash.it/330/250/?random=8" /></div>
+      <!--   clone     -->
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=1" /></div>
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=2" /></div>
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=3" /></div>
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=4" /></div>
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=5" /></div>
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=6" /></div>
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=7" /></div>
+      <div class="clone"><img src="https://unsplash.it/330/250/?random=8" /></div>
+   </div>
+</div>    
+
+<div class="w-full" style="height: 30px;"></div>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+    <a class="btn btn-success btn-primary" href="/main/market">채소 구출하기</a>
+</div>
+
+<div class="w-full" style="height: 20px;"></div>
+
+<div class="d-grid gap-2 col-6 mx-auto">
+  <a class="btn btn-success btn-primary" id="regul_btn">정기 배송</a>
+</div>
+
+
+<div class="w-full" style="height: 50px;"></div>
+
+      <article class="blog-post">
+        <!-- 배추 그림 시작-->   
+    <div class="jb-wrap">
+        <div class="jb-image">
+            <img src="https://d3cpiew7rze14b.cloudfront.net/assets/mission/korea_cabbage.png" alt=""></div>
+        <div class="jb-text">
+            <div class="jb-text-table">
+                <div class="jb-text-table-row">
+                    <div class="jb-text-table-cell img-txt">
+                        <p> 지속가능한 농업을 지지함으로써<br>
+                            우리의 땅과 미래를 더 건강하게 만듭니다.<br>
+                            분명한 변화를 만듭니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 배추 그림 끝-->
+      </article>
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-body-tertiary rounded">
+          <h4 class="fst-italic">산지에서 구출</h4>
+          <p class="mb-0">품질은 똑같지만, 판로가 부족한<br> 친환경 농산물을 수확 직후 구출해요.</p>
+        </div>
+
+        <div>
+          <h4 class="fst-italic">최근 본 후기</h4>
+          <ul class="list-unstyled">
+            <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
+                    <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                    </svg>
+                    <div class="col-lg-8">
+                        <h6 class="mb-0" style="font-weight: 900; ">@ 맛있으면거인이되는여자</h6>
+                        <small class="text-body-secondary">치커리 겟도 다제~# 한입도 남김 없이 다 먹어 버리겠어.!!!<br>이렇게 줜ㄴㄴㄴ 맛을 먹을 수 있게 해준 푸기에게 신조우오 사사게오 사사게오 사사게오</small>
+                    </div>
+                    <!-- 추가한 부분 -->
+                    <div class="col-lg-4">
+                        <img th:src="@{/image/review_img_dummy/giant.png}" style="max-width: 100%; height: auto;" alt="후기 이미지">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
+                    <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                    </svg>
+                    <div class="col-lg-8">
+                        <h6 class="mb-0" style="font-weight: 900; ">@ 손흥민</h6>
+                        <small class="text-body-secondary">여기 야채 아침에 먹고 헤트트릭 했어요. 3골!! 3어시!!</small>
+                    </div>
+                    <!-- 추가한 부분 -->
+                    <div class="col-lg-4">
+                        <img th:src="@{/image/review_img_dummy/son.jpg}" style="max-width: 100%; height: auto;" alt="후기 이미지">
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a class="d-flex flex-column flex-lg-row gap-3 align-items-start align-items-lg-center py-3 link-body-emphasis text-decoration-none border-top" href="#">
+                    <svg class="bd-placeholder-img" width="100%" height="96" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="#777"></rect>
+                    </svg>
+                    <div class="col-lg-8">
+                        <h6 class="mb-0" style="font-weight: 900; ">@ 여긴니가맡을게난어서도망쳐</h6>
+                        <small class="text-body-secondary">사장님이 알차게 맛있고, 음식이 친절해요.!</small>
+                    </div>
+                    <!-- 추가한 부분 -->
+                    <div class="col-lg-4">
+                        <img th:src="@{/image/review_img_dummy/vegigi.png}" style="max-width: 100%; height: auto;" alt="후기 이미지">
+                    </div>
+                </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">후기 좋아요 랭킹</h4>
+          <ol class="list-unstyled mb-0">
+            <li><a href="#">"비밀의 문이 열렸다."...@한개한게한계</a></li>
+            <li><a href="#">"끝없는 모험의 시작."...@엉덩일흔드록바</a></li>
+            <li><a href="#">"잊을 수 없는 순간,"...@여긴니가맡을게난어서도망쳐</a></li>
+            <li><a href="#">"어둠이 밝아지기 시작하며,"...@얼Let it go레리</a></li>
+            <li><a href="#">"미지의 세계에서 온,"...@조선왕조실룩샐룩</a></li>
+            <li><a href="#">"모든 것이 변해갈 때,"...@제일빠른말은주말</a></li>
+            <li><a href="#">"시간을 거슬러 올라가면,"...@뼈로만든방은골룸</a></li>
+            <li><a href="#">"불가능한 것이 가능해지며,"...@이거먹고사람됨-곰-</a></li>
+            <li><a href="#">"마음에 남는 추억,"...@이철규</a></li>
+            <li><a href="#">"소중한 것을 찾아서,"...@이선희</a></li>
+            <li><a href="#">"눈부신 미래의 시작."...@안창호</a></li>
+            <li><a href="#">"끝이 보이지 않는 길에서,"...@정약용</a></li>
+          </ol>
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">Elsewhere</h4>
+          <ol class="list-unstyled">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div> 
+    </main>
+        
+    <th:block layout:fragment="myscripts">
+        <script src="/js/index.js"></script>
+    </th:block>
+    
+</html>

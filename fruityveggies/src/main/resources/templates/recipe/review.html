@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/base_layout}">
+
+<th:block layout:fragment="mycss">
+	<link rel="stylesheet" href="/css/review.css">
+</th:block>
+
+<main layout:fragment="main">
+
+<div class="review-container">
+ <h1>구매한 상품의 이용후기를 작성해주세요</h1>
+ 
+  <br>
+  <br>
+  <div class="product-info">
+	  <!-- 이미지 파일 가져오기 -->
+   <img class="product-image" src="/img/111.jpeg">
+  <div class="product-description">
+	  <!-- 상품명 가져오기 -->
+   <h3>50~150g 아담한 감자 2kg</h3>
+  </div>
+ </div>
+<br>
+<br>
+<div class="chat-info">
+    <h5>품질/배송사고와 관련 내용은 채팅 상담으로 빠르게 해결해 드리겠습니다.
+		
+    <button type="submit" class="chat-button">
+	 <a href="/chat/chatRoomlist">
+	  <img src="/img/telemarketer.avif" alt="채팅상담" class="chat-image">
+	 </a>
+	</button>
+	</h5>
+</div>
+<hr />
+<br>
+<h1>상품은 어떠셨나요?</h1>
+<form class="card-body" method="post" id="reviewForm" >
+ <div class="rating">
+  <!-- 해당 별점을 클릭하면 해당 별과 그 왼쪽의 모든 별의 체크박스에 checked 적용 -->
+  <input type="checkbox" name="rating" id="rating1" value="1" class="rate_radio" title="1점" >
+   <label for="rating1"></label>
+  <input type="checkbox" name="rating" id="rating2" value="2" class="rate_radio" title="2점" >
+   <label for="rating2"></label>
+  <input type="checkbox" name="rating" id="rating3" value="3" class="rate_radio" title="3점" >
+   <label for="rating3"></label>
+  <input type="checkbox" name="rating" id="rating4" value="4" class="rate_radio" title="4점">
+   <label for="rating4"></label>
+  <input type="checkbox" name="rating" id="rating5" value="5" class="rate_radio" title="5점">
+   <label for="rating5"></label>
+ <div id="result"></div> 
+</div>
+<div>
+ <textarea class="ReviewEditor my-2" id="content" name="content" maxlength="1000"
+         rows=10; placeholder="본문15자 이상 입력하세요."
+         oninput="updateTextLength()"></textarea>
+</div>
+<div class="d-none">
+<label class="form-label" for="writer">작성자</label>
+<input class="form-control" id="writer"
+      type="text" name="writer" th:value="${session.email}" />
+</div>
+<input class="form-control" id="itemId"
+      type="hidden" name="itemId" />
+</div>
+<!-- 첨부파일 자리 -->
+<!--<input type="file"/>-->
+ <br>
+ <br>
+ <hr>
+ <br>
+ <li> BEST 후기로 선정 시 500P 지급됩니다.</li>
+ <li> 첫번째 첨부된 이미지가 대표이미지로 선정됩니다.</li>
+ <li> 상품과 무관한 사진 및 욕설/비속어가 포함된 리뷰는 고지 없이 삭제될 수 있습니다.</li>
+ <li> 올려주신 후기는 FruityVeggies의 콘텐츠로 활용될 수 있습니다.</li>
+</form>
+ <br>
+ <br>
+<div class="btn-container">
+	<div class="my-2">
+    <input class="form-control btn btn-outline-success btnSave" id="btnSave"
+                  type="submit" value="작성 완료" />
+                  
+<button class="form-control btn btn-outline-secondary btnCancel" id="btnCancel">취소</button>
+    </div>
+</div>
+</div>
+<br>
+<br>
+
+	<th:block layout:fragment="myscripts">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="/js/review/review-star.js"></script>
+    </th:block>
+    
+</main>
+
+</html>

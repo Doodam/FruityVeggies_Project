@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    <th:block layout:fragment="mycss">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/reset.css}" />
+        <link rel="stylesheet" type="text/css" th:href="@{/css/freshmarket.css}" />
+    </th:block>    
+    
+    <main layout:fragment="main" >
+      <div id="order_wrap">
+        <div class="left">
+           <img th:src="${item.main_image_path}" id="mainImg" alt="Item Image">
+        </div>
+        <div class="right">
+            <div class="top">
+                <h1 th:text="${item.name}">Default Item Name</h1>
+                <p></p>
+                <dl>
+                    <dt>판매 가격</dt>
+                    <dd th:text="${items[0].price} + 원">Default Price</dd>
+                    <dt>재배 특징</dt>
+                    <dd th:text="${item.grow_char}">대한민국</dd>
+                </dl>
+                <div class="number">
+                    <p class="order_name" th:text="${item.name}">못난이 파프리카</p>
+                    <div class="order_number">
+                        <select th:field="*{item}" class="form-select" id="form-select" name="form-select">
+                            <option value="">옵션을 선택해주세요</option>
+                            <option th:each="item : ${items}" th:value="${item.price}" th:text="${item.name +' '+item.price }"></option>
+                        </select>
+                        <!-- <span class="number_price">3,000원</span> -->
+                    </div>
+                </div>
+                <div class="opDetailArea" id="opDetailArea"></div>
+                <div >
+                    <p>총 상품 금액</p>
+                    <p class ="result_price"></p>
+                </div>
+            </div>
+            <div class="bottom">
+                <button type="button" id="order_btn">주문하기</button>
+                <button type="button" id="cart_btn">장바구니</button>
+            </div>
+        </div>
+      </div>
+    <!-- 옵션 세부 정보 업데이트 영역 -->
+        <div>
+            <img th:src="${item.detail_image_path}" alt="Sample Image" width="100%" height="100%">
+        </div>    
+    </main>
+    
+    <th:block layout:fragment="myscripts">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="/js/freshmarket.js"></script>
+    </th:block>
+    
+</html>

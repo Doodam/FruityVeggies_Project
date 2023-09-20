@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    <th:block layout:fragment="mycss">
+        <link rel="stylesheet" href="/css/set.css">
+        <link rel="stylesheet" href="/css/recipedetail.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    </th:block>    
+    
+    <main layout:fragment="main" >
+    <div id="order_wrap">
+        <div class="left">
+           <img th:src="${recipe.image}" alt="이미지">
+        </div>   
+        <div class="right">
+            <div class="top">
+                <div class="right-section" th:fragment="right-section">
+                    <p>FruityVeggies</p>
+                    <h2 th:text="${recipe.title}"></h2>
+                    <span class="rounded-sm border border-gray-600 px-4px pb-2px pt-2px font-medium text-gray-600" style="font-size: 13px;" th:text="${recipe.cooking_time}"></span>
+                    <span class="font-medium text-gray-600" style="font-size: 15px;" th:text="${recipe.category_main}"></span>
+                    <span class="font-medium text-gray-600" style="font-size: 15px;" th:text="${recipe.category_sub}"></span>
+                </div>
+                <hr>
+                <span>
+                     <span th:text="${recipe.content}">
+                     </span>
+                </span>
+                
+                <div class="w-full" style="height: 24px;"></div>
+                <div class="text-16px font-semibold leading-6 text-gray-800">
+                </div>
+                 
+                <div class="flex items-center justify-between bottom">
+                    
+                    <button class="like-button">
+                        <img class="like-img"  src="/img/like.svg" alt="like-post">
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="h-14px bg-gray-0 sm:my-48px" style="margin-top: 30px; margin-bottom: 30px;"></div>
+    
+    
+    <div class="uploadBtn">
+         <a href="/recipe/upload"> <!-- Update this with your target URL -->
+            <button id="uploadBtn">업로드</button>
+         </a>
+    </div>
+    
+    <div class="nav centered-nav">
+    <ul class="nav nav-underline nav-with-margin">
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="#IngredientTab" tabindex="0">재료</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#Makingtab">만드는 방법</a>
+      </li>
+    </ul> 
+    </div>
+    
+    <div class="w-full" style="height:30px;"></div>
+    
+    <div id="IngredientTab" class="outer-wrapper">
+        <div class="px-16px" >
+                <h3 class="text-22px font-bold text-gray-800">재료</h3>
+                    <div class="rounded-[100px] bg-brand-10 px-8px py-5px">
+                        <p class="text-14px font-semibold text-brand-1">1인분 기준</p>
+                    </div>
+        </div>
+            
+                <div class="flex flex-col gap-12px">
+                    <h6 class="text-14px font-medium text-gray-800" >&nbsp;주재료&nbsp;</h6>
+                <ul class="flex flex-grow flex-col rounded-sm border border-gray-200 p-16px gap-8px">
+                    <li class="flex-between">
+                        <div th:each="cart : ${required_ingredient}" class="shrink-0 cursor-pointer rounded-sm p-5px text-14px font-medium bg-gray-200 text-gray-800" style="line-height: 14px;" >
+                            <span th:text="${cart.name}" class="text-16px text-gray-800 sm:text-sm"></span>
+                        </div>
+                    </li>
+                        <li class="flex-between">
+                            <div th:each="cart : ${required_ingredient}" class="shrink-0 cursor-pointer rounded-sm p-5px text-14px font-medium bg-gray-200 text-gray-800" style="line-height: 14px;">
+                                <span th:text="${cart.amount}" class="text-16px text-gray-800 sm:text-sm"></span>
+                            </div>
+                        </li>
+                        
+                </ul>
+                </div>
+           
+                
+                
+                <div class="flex flex-col gap-12px">
+                    <h6 class="text-14px font-medium text-gray-800" >&nbsp;부재료&nbsp;</h6>
+                <ul class="flex flex-grow flex-col rounded-sm border border-gray-200 p-16px gap-8px">
+                    <li class="flex-between">
+                        <div th:each="cart : ${additionalIngredient}" class="shrink-0 cursor-pointer rounded-sm p-5px text-14px font-medium bg-gray-200 text-gray-800" style="line-height: 14px;" >
+                            <span th:text="${cart.name}"  class="text-16px text-gray-800 sm:text-sm"></span>
+                        </div>
+                    </li>
+                </ul>
+                </div>
+            
+        
+                <div class="grid grid-cols-3 gap-15px">
+                <div class="flex flex-col gap-12px">
+                    <h6 class="text-14px font-medium text-gray-800">&nbsp;양념&nbsp;</h6>
+                        <ul class="flex flex-grow flex-col rounded-sm border border-gray-200 p-14px gap-16px">
+                            <li class="flex-between">
+                                <div th:each="cart : ${seasoning}">
+                                <p th:text="${cart.name}" class="text-16px text-gray-800 sm:text-sm"></p>
+                                </div>
+                            </li>
+                            
+                        </ul>
+                </div>
+                </div>
+            </div>
+           
+        
+        <div class="h-14px bg-gray-0 sm:my-48px" style="margin-top: 30px; margin-bottom: 30px;"></div>
+       
+        
+        <div id="Makingtab" class="outer-wrapper">
+            <div class="px-16px" style="line-break: anywhere;">
+                <h3 class="text-22px font-bold text-gray-700">만드는 방법&nbsp;</h3>
+            </div>
+            <div  style="height: 24px;"></div>
+            <div class="">
+                <div >
+                    <div >
+                        <div >
+                            <div th:each="cart : ${making}" class="h-full shrink-0">
+                                <p th:text="${cart.description}" class="grow text-16px leading-6 text-gray-800 "></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    </div>
+                    <div >
+                        <div >
+                            <p >TIP</p>
+                                <div th:each="cart : ${tip}" class="h-full shrink-0">
+                                    <p th:text="${cart.description}" class="grow text-16px leading-6 text-gray-800 "></p>
+                                </div>
+                        </div>
+                    </div>
+                    </div>
+                
+                </div>
+        
+    
+        <div class="h-14px bg-gray-0 sm:my-48px" style="margin-top: 0px; margin-bottom: 0px;"></div>
+    
+        <!-- <div class="my-2">
+            <div class="my-2 header">
+                <span>댓글</span>
+                <span id="replyCount" th:text="${replyCount}"></span>개
+            </div>
+            <div class="d-none" id="authName" th:text="${ #authentication.name }"></div>
+                <div class="my-2 row">
+                    <div class="col-10">
+                        <textarea id="replyText" placeholder="댓글 내용 입력"></textarea>
+                    </div>
+                    <div class="col-2">
+                        <button class="control btn" id="btnReplyCreate">등록</button>
+                    </div>
+                </div>  -->
+                
+                <!-- 댓글 목록 보여줄 영역 
+                <div class="my-2 row" id="replies"></div>
+            </div>  -->
+            
+        
+    
+    
+    </main>
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+
+</body>
+<th:block layout:fragment="myscripts">
+    <script src="/js/recipe/detail.js"></script>
+    <script src="/js/recipe/reply.js"></script>
+</th:block>
+
+    
+</html>

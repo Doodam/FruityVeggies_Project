@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    <head>
+      <meta charset="UTF-8"/>
+      <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    </head>  
+
+        <th:block layout:fragment="mycss">
+            <link rel="stylesheet" href="./bulma.min.css">
+            <link rel="stylesheet" type="text/css" th:href="@{/css/freshmarket_order.css}" />
+        </th:block>
+    
+    <main layout:fragment="main">
+        <div class="my-2 card">
+  <div class="card-body">
+   <form method="post" style="margin: auto; width: 400px;">
+
+    
+     <h1 class="font-bold my-5" style="font-size: 26px;">주문 확인 및 결제</h1>    
+     <div class="my-48px h-14px w-full bg-gray-100 mt-40px mb-32px"></div>
+     <h1 class="font-bold my-4"  style="font-size: 26px;">배송 정보</h1>
+    
+
+    <div class="my-2">
+     <label class="form-label" for="ordername">받는 사람</label>
+     <input class="form-control" id="ordername" type="text"
+      name="ordername" placeholder="이름을 입력해주세요." />
+    </div>
+    <div class="my-2">
+     <label class="form-label" for="orderphone">휴대폰 번호</label> <input
+      class="form-control" id="orderphone" type="text" name="orderphone"
+      placeholder="휴대폰 번호를 입력해주세요." />
+    </div>
+
+
+
+    <div class="my-2">
+     <label class="form-label" for="orderAddress">주소</label>
+     <div class="fw-bold" style="display: flex; flex-direction: column;">
+       <div style="display: flex; align-items: center;">
+        <input class="form-control" type="text" id="sample4_postcode"
+         style="width: 330px; margin-right: 10px;"
+         placeholder="주소를 검색하세요" disabled=""> <input
+         type="button" class="btn btn-success"
+         onclick="sample4_execDaumPostcode()" value="검색">
+       </div>
+       <div class="w-full" style="height: 10px;"></div>
+       <input class="form-control" style="width: 400px;" type="text"
+        id="orderaddress1" name="orderaddress1" placeholder="도로명주소" size="60">
+       <input class="form-control" type="hidden"
+        id="sample4_jibunAddress" style="width: 400px;"
+        placeholder="지번주소" size="60"> <span id="guide"
+        style="color: #999; display: none"></span>
+       <div class="w-full" style="height: 5px;"></div>
+       <input class="form-control" type="text" id="orderaddress2"
+        name="orderaddress2" style="width: 400px;" placeholder="상세주소를 입력하세요"
+        size="60"><br> <input type="hidden"
+        id="sample4_extraAddress" placeholder="참고항목" size="60">
+       <input type="hidden" id="sample4_engAddress" placeholder="영문주소"
+        size="60">
+</div>
+
+       <script>
+                                //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+                                function sample4_execDaumPostcode() {
+                                    new daum.Postcode(
+                                            {
+                                                oncomplete : function(data) {
+                                                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                                                    // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                                                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                                                    var roadAddr = data.roadAddress; // 도로명 주소 변수
+                                                    var extraRoadAddr = ''; // 참고 항목 변수
+
+                                                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                                                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                                                    if (data.bname !== ''
+                                                            && /[동|로|가]$/g
+                                                                    .test(data.bname)) {
+                                                        extraRoadAddr += data.bname;
+                                                    }
+                                                    // 건물명이 있고, 공동주택일 경우 추가한다.
+                                                    if (data.buildingName !== ''
+                                                            && data.apartment === 'Y') {
+                                                        extraRoadAddr += (extraRoadAddr !== '' ? ', '
+                                                                + data.buildingName
+                                                                : data.buildingName);
+                                                    }
+                                                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                                                    if (extraRoadAddr !== '') {
+                                                        extraRoadAddr = ' ('
+                                                                + extraRoadAddr
+                                                                + ')';
+                                                    }
+
+                                                    // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                                                    document
+                                                            .getElementById('sample4_postcode').value = data.zonecode;
+                                                    document
+                                                            .getElementById("orderaddress1").value = roadAddr;
+                                                    document
+                                                            .getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                                                    document
+                                                            .getElementById("sample4_engAddress").value = data.addressEnglish;
+
+                                                    // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                                                    if (roadAddr !== '') {
+                                                        document
+                                                                .getElementById("sample4_extraAddress").value = extraRoadAddr;
+                                                    } else {
+                                                        document
+                                                                .getElementById("sample4_extraAddress").value = '';
+                                                    }
+
+                                                    var guideTextBox = document
+                                                            .getElementById("guide");
+                                                    // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                                                    if (data.autoRoadAddress) {
+                                                        var expRoadAddr = data.autoRoadAddress
+                                                                + extraRoadAddr;
+                                                        guideTextBox.innerHTML = '(예상 도로명 주소 : '
+                                                                + expRoadAddr
+                                                                + ')';
+                                                        guideTextBox.style.display = 'block';
+
+                                                    } else if (data.autoJibunAddress) {
+                                                        var expJibunAddr = data.autoJibunAddress;
+                                                        guideTextBox.innerHTML = '(예상 지번 주소 : '
+                                                                + expJibunAddr
+                                                                + ')';
+                                                        guideTextBox.style.display = 'block';
+                                                    } else {
+                                                        guideTextBox.innerHTML = '';
+                                                        guideTextBox.style.display = 'none';
+                                                    }
+                                                }
+                                            }).open();
+                                }
+                            </script>
+     </div>
+
+
+
+
+
+     <div class="my-2">
+      <label class="form-label" for="orderrequest">배송 요청 사항(선택)</label>
+      <select class="form-select" id="orderrequest" name="orderrequest">
+       <option value="선택안함">선택안함</option>
+       <option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
+       <option value="문 앞에 놓아주시고 벨을 누르지 말아주세요.">문 앞에 놓아주시고 벨을
+        누르지 말아주세요.</option>
+       <option value="경비실에 맡아주세요">경비실에 맡아주세요</option>
+       <option value="부재 시 전화 또는 문자 주세요.">부재 시 전화 또는 문자 주세요.</option>
+       <option value="배송 전에 연락주세요.">배송 전에 연락주세요.</option>
+       <option value="직접 입력">직접 입력</option>
+      </select>
+      <div id="inputContainer" style="display: none;">
+       <input class="form-control my-2" id="customInput" type="text"
+        name="customInput" placeholder="배송 요청사항을 입력하세요." />
+      </div>
+     </div>
+
+     <div class="my-48px h-14px w-full bg-gray-100 mt-40px mb-32px"></div>
+
+     <div>
+      <h1 class="font-bold my-4" style="font-size: 26px;">
+       주문 상품<span id="orderCount" style="color: #9FE2BF;"></span>
+      </h1>
+      <!-- th:text="${item.getCount()}" -->
+     </div>
+
+     
+     <div class="image-container">
+      <table class="table table-hover" style="border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">이미지</th>
+                        <th>상품이름</th>
+                        <th>수량</th>
+                        <th>합계</th>
+                        <th>배송비</th>
+                        <th>적립급</th>
+                    </tr>       
+                </thead>
+                <tbody>
+                    <tr th:each="cart : ${lists}">
+                        <td style="width: 210px; text-align: center;">
+                            <img th:src="${cart.main_image_path}" style="width: 100px; " >
+                        </td>
+                        <td th:text="${cart.name}"></td>
+                        <td>
+                            <input type="number" th:id="'cntNum_'+${cart.price}" th:name="'cntNum_'+${cart.price}" min="1" max="10" step="1" th:value="${cart.cnt}">
+                        </td>
+                        <td th:id="'opTotal_'+${cart.price}" th:text="${cart.price * cart.cnt}" th:name="'opTotal_'+${cart.price}"></td>
+                        <td id="deliveryCost_1">2000원</td>
+                        <td th:id="'reserves_'+${cart.price}" th:text="${cart.price * 0.05}"></td>
+                    </tr>
+                </tbody>
+            </table>
+     </div>
+
+     <br>
+<!--      <div class="border border-gray-200">
+      <div>
+       <div class="flex justify-between p-16px">
+        th:text="${item.name} + ' ' + ${items.max_count} + ' 개'"
+        <p class="text-16px text-gray-800" id="orderName">item.name</p>
+        th:text="${item.price * items.max_count} + ' 원'"
+        <p class="text-16px text-gray-800">item.price</p>
+       </div>
+      </div>
+
+      <div
+       class="flex items-start justify-between border-t border-gray-200 bg-gray-100 p-16px">
+       <p class="text-16px font-semibold text-gray-800">배송비</p>
+       <p class="flex flex-col items-end gap-9px">
+        <span class="text-16px font-normal text-gray-800">무료</span>
+       </p>
+      </div>
+     </div> -->
+
+     <br>
+     <div class="my-48px h-14px w-full bg-gray-100 mt-40px mb-32px"></div>
+
+     <div class="my-2">
+      <h1 class="font-bold my-4" style="font-size: 26px;">결제 정보</h1>
+      <div class="flex flex-col gap-16px">
+       <div class="flex justify-between text-gray-800">
+        <p class="text-16px">총 상품금액</p>
+        <p class="text-16px" id="totalPrice"></p>
+       </div>
+       <div class="flex justify-between text-gray-800">
+        <p class="text-16px">총 배송비</p>
+        <p class="text-16px" id="totalDeliveryCost"></p>
+       </div>
+       <div class="flex justify-between text-gray-800">
+        <p class="text-16px">사용 적립금</p>
+        <p class="text-16px">-0</p>
+       </div>
+       <hr>
+       <div class="flex justify-between text-lg font-bold text-gray-800">
+        <p class="text-18px">총 결제 금액</p>
+        <p class="text-18px text-brand-1" style="color: #9FE2BF;" id="totalPayment"></p>
+       </div>
+      </div>
+     </div>
+
+     <div class="my-48px h-14px w-full bg-gray-100 mt-40px mb-32px"></div>
+
+     <!-- ------------------- -->
+     <!--     <div th:replace="main/main/index :: main"></div> -->
+     <!-- ------------------- -->
+
+
+     <br>
+   </form>   
+   
+     
+     <form  style="margin: auto; width: 400px;"> 
+     <section class="section">
+   <div class="container">
+   <h1 class="font-bold my-1"  style="font-size: 26px;">결제 수단을 선택해주세요!</h1>
+  
+  <br>
+    <div style="display: flex;">   
+
+
+           <div style="flex: 1; text-align: center;">
+               <img th:src="@{/img/card.png}" style="display: block; margin: 0 auto;" width="50" height="50" >
+               <label style="display: inline-block; margin-top: 10px;"><input type="radio" name="payment" value="card">카드</label>
+            </div>
+            
+            <div style="flex: 1; text-align: center;">
+                <img th:src="@{/img/bank.png}" style="display: block; margin: 0 auto;" width="50" height="50">
+                <label style="display: inline-block; margin-top: 10px;"><input type="radio" name="payment" value="transfer">계좌이체</label>
+            </div>
+            
+            <div style="flex: 1; text-align: center;">
+                <img th:src="@{/img/phone.png}"style="display: block; margin: 0 auto;" width="50" height="50">
+                <label style="display: inline-block; margin-top: 10px;"><input type="radio" name="payment" value="phone">휴대폰</label>    
+            </div>   
+     </div> 
+   </div>
+   </section>
+
+   
+   
+   
+   
+    
+    <br>
+    
+        
+      <div class="flex flex-row items-center gap-13px" style="margin-bottom: 0px;">
+     <label class="flex items-center gap-5px">
+        <input type="checkbox" id="privacyCheckbox">
+    </label>
+    <div class="flex w-full items-center justify-between">
+     <p class="font-body2 text-gray-600">&nbsp;&nbsp;[필수] 개인정보 수집 및 이용 동의</p>
+     <a
+      href="https://fantastic-interest-ad9.notion.site/1f2cdaba7c014ee8b53e76bb1d1e31cb"
+      target="_blank" rel="noreferrer">
+      <img
+      src="https://d3cpiew7rze14b.cloudfront.net/assets/buynow/One/Vector_6_glTm6KLoR.svg?ik-sdk-version=javascript-1.4.3&amp;updatedAt=1659317729815"
+      alt="개인정보 수집 및 이용 동의" class="h-14px w-7px"></a>
+    </div>
+    </div> 
+    <button class="btn btn-long" id="buyBtn" type="button" style="background-color: #9FE2BF;">바로 구매하기</button> 
+ </form> 
+
+
+
+  </div>
+ </div>
+
+    </main>
+
+        <th:block layout:fragment="myscripts">
+       <script src="/js/freshmarket_order.js"></script> 
+       <script src="https://js.tosspayments.com/v1"></script>
+       <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+        </th:block>
+
+
+</html>

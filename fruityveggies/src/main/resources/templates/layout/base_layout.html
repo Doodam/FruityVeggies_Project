@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<title>fruityVeggies</title>
+<style>
+	.chat-button {
+  display: inline-block;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.chat-image {
+  width: 70px;
+  height: 70px;
+}
+
+@font-face {
+    font-family: 'Giants-Inline';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Giants-Inline.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+</style>
+<link rel="icon" type="image/png" th:href="@{/img/icon.png}">
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+    crossorigin="anonymous"/>
+    
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base_layout.css}">
+
+        
+    <th:block layout:fragment="mycss"></th:block>
+</head>
+<body>
+    <div class="container-fluid">
+        
+    <div class="container">
+        <!-- <div class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none" style="padding-top: 10px;"> -->
+    <!-- <img th:src="@{/img/logo.png}" alt="이미지" class="h-72px w-72px" style="padding-right: 10px;">
+    <span class="fs-4">fruityVeggies</span> -->
+    
+    <header class="p-3">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        
+
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" style="font-size: 18px;font-weight: 900;">
+        	<a href="/" class="d-flex align-items-center text-black text-decoration-none">
+          <img th:src="@{/img/fruitylogo.png}" alt="이미지" class="h-72px w-72px" style="padding-right: 10px; width:500px; height: 150px; padding-left: 50px; padding-right: -200px;"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+            <li><a href="/" class="nav-link  text-black" style="font-size: 30px; font-weight: 1000; padding-left: 180px;"></a></li>
+          <!-- <li><a href="/" class="nav-link px-2 text-white">Home</a></li>
+          <li><a href="/" class="nav-link px-2 text-white">Features</a></li>
+          <li><a href="/" class="nav-link px-2 text-white">Pricing</a></li>
+          <li><a href="/" class="nav-link px-2 text-white">FAQs</a></li>
+          <li><a href="/" class="nav-link px-2 text-white">About</a></li> -->
+        </ul>
+
+        <button type="button" class="btn btn-outline-black me-2" id="cartmain_btn">장바구니</button>
+
+        <button type="submit" class="chat-button">
+		 <a href="/chat/chatRoomlist">
+		  <img src="/img/telemarketer.avif" alt="채팅상담" class="chat-image">
+		 </a>
+		</button>
+
+        <!-- 인증된 사용자이면(로그인 상태이면) -->
+
+                        <!-- 인증된 사용자이면(로그인 상태이면) -->
+        <th:block sec:authorize="isAuthenticated()">
+            <li class="nav-item">
+        <!-- 로그인한 email 표시 -->
+                 <span id="userId" th:if="${session.email}" th:text="${session.email}"></span>
+                 <span id="userId" th:unless="${session.email}" th:text="${#authentication.principal.email}"></span>
+                 <a class="nav-link" th:href="@{/logout}">로그아웃</a>
+                 <a class="nav-link" th:href="@{/login/mypage}">마이페이지</a>
+            </li>
+        </th:block>
+
+                        <!-- <th:block sec:authorize="isAuthenticated()">
+                            <li class="nav-item">
+                                로그인한 username 표시
+                                
+                                <span th:text="${session.email}"></span>
+                                <span id="userId" th:text="${#authentication.principal.email}"></span>
+                                <a class="nav-link" th:href="@{/logout}">로그아웃</a>
+                                <a class="nav-link" th:href="@{/login/mypage}">마이페이지</a>
+                            </li>
+                        </th:block> -->
+
+                        
+                        <!-- 익명 사용자이면(로그인 하지 않은 상태이면) -->
+                        <th:block sec:authorize="isAnonymous()">
+                            <li class="nav-item">
+                                <a class="btn btn-outline-black me-2" th:href="@{/login}">로그인</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-outline-black me-2" th:href="@{ /member/signup }">회원가입</a>
+                            </li>
+                        </th:block>
+
+      </div>
+    </div>
+  </header>
+    
+  </div>
+  <header class="d-flex justify-content-center py-3" id="header">
+  <div id="lnb">
+  <div class="nav-scroller " style="position: relative; background-color: rgba(255, 255, 255, 0.8); z-index: 1;">
+    <nav class="nav d-flex justify-content-between " style="font-size: 15px;font-weight: 900; background: white;">
+      <a class="link-secondary" th:href="@{/main/mission}" style="padding: 0 15px; margin-right: 250px;" >우리의 미션</a> 
+      <a class="link-secondary" th:href="@{/main/regulardelivery}" style="padding: 0 15px; margin-right: 250px;">정기배송</a>
+      <a class="link-secondary" th:href="@{/main/market}" style="padding: 0 15px;; margin-right: 250px;">싱싱마켓</a>
+      <a class="link-secondary" th:href="@{/main/recipes}" style="padding: 0 15px; ">레시피</a>
+
+      <a th:if="${isLoggedIn}" href="https://kauth.kakao.com/oauth/logout?client_id=64615d2948ebecc89b74c2a630c4a480&logout_redirect_uri=http://localhost:8030/logout">로그아웃</a>
+      <a class="link-secondary " href="#" style="padding-right: 50px; font-size: 15px;"></a>
+     <!--  <div  id="text-end1" style="display: none;">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input type="search" class="form-control form-control-dark text-bg-white" placeholder="Search..." aria-label="Search">
+        </form>  
+    </div>     
+        <div id="text-end2" style="display: none;">
+          <button type="button" id="loginBtn1" class="btn btn-light text-dark me-2">로그인</button>
+          <button type="button" id="signBtn1" class="btn btn-primary">회원가입</button>
+<<<<<<< HEAD
+        </div>
+=======
+          
+        </div> --> 
+    </nav>
+  </div>
+  </div>  
+  </header>
+   
+   
+
+        <!-- main 컨텐트가 삽입될 위치 -->
+        <th:block layout:fragment="main" ></th:block>
+
+ 
+ 
+
+        </div>
+<footer class="py-3 my-4">
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+    </ul>
+    <p class="text-center text-muted">© 2023 JJJ AIM, Inc</p>
+  </footer>
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/js/base_layout.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- 자바스크립 파일 추가할 위치 -->
+    <th:block layout:fragment="myscripts"></th:block>
+</body>
+</html>

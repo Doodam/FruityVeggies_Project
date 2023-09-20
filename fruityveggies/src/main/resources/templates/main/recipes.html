@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/base_layout}">
+
+<th:block layout:fragment="mycss">
+	<link rel="stylesheet" href="/css/recipeslist.css">
+	<link rel="stylesheet" href="/css/recipedetail.css">
+</th:block>
+
+<main layout:fragment="main">
+ <h2 class="title">프루티베지스 레시피</h2>
+  <form class="search-container" method="get" th:action="@{/recipe/search}">
+   <input class="recipe-search-bar-input"
+          placeholder="요리나 재료를 검색해보세요!" name="keyword">
+   <button type="submit" class="search-button">
+    <img src="/img/Search-icon.svg" alt="검색">
+   </button>
+  </form>
+        <hr style="width: 40%; margin: auto;">
+        <div style="height: 30px;"></div>
+       
+    <div>
+	  <div class="container">
+	    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+	        <div class="col" th:each="recipe : ${recipes}">
+	            <div class="card shadow-sm">
+				    <a th:href="@{/recipe/detail(id=${recipe.id})}"  style="text-decoration: none;">
+				        <img class="bd-placeholder-img card-img-top" th:src="${recipe.image}">
+				        <div class="card-body">
+				            <h5 class="card-title" th:text="${recipe.title}" style="color:green;"></h5>
+				        </div>
+				    </a>
+	                <hr>
+	                <div>
+	                    <span>좋아요🩷</span>3<p class="text-14px font-normal text-gray-600 truncate-1-lines">#비건, #간단요리, #가벼운요리, #건강식, #입맛돋우는요리</p>
+	                </div>
+				</div>
+	          </div>
+	        </div>
+	    </div>
+	 </div>
+    </div>
+<div class="uploadBtn">
+         <a href="/recipe/upload">
+            <button id="uploadBtn">업로드</button>
+        </a>
+</div>
+<br>
+<br>
+<br>
+
+</main>
+	<th:block layout:fragment="myscripts">
+	</th:block>
+
+</html>

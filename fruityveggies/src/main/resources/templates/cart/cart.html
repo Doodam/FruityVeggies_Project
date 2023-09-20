@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    
+    <th:block layout:fragment="mycss">
+    </th:block>    
+      
+<main layout:fragment="main">
+      <div class="my-2 card">
+       <div class="card-body">
+        <form method="post" style="margin: auto; width: 400px;">
+     
+         <h1 class="font-bold my-5" style="font-size: 26px;">장바구니에 담긴 <br> 상품들이에요</h1>
+         <div>
+          <h1 class="font-bold my-4" style="font-size: 26px;">담긴 상품</h1>
+          <span id="orderCount" style="color: #9FE2BF;">1</span>
+         </div>
+         <div class="flex items-center justify-between">
+          <div class="flex flex-row items-center gap-13px"
+           style="margin-bottom: 0px;">
+           <img
+            src="https://d3cpiew7rze14b.cloudfront.net/assets/login/Group_4383__2__X6V1UNE92.svg"
+            class="cursor-pointer" alt="체크 박스">
+           <div class="flex w-full flex-row justify-between">
+            <p
+             class="text-sm text-gray-600 text-gray-600 text-base font-semibold">전체 선택</p>
+           </div>
+          </div>
+          <button class="font-semibold text-gray-600">선택 삭제</button>
+         </div>
+         <hr>
+         
+  <!--        
+         <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">번호</th>
+                        <th scope="col">상품ID</th>
+                        <th scope="col">상품명</th>
+                        <th scope="col">수량</th>
+                        <th scope="col">가격</th>
+                        <th scope="col">담은날짜</th>
+                        <th scope="col">삭제</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="cart_item, i : ${cart_itemList}">
+                        <td th:text="${i.count}">1</td>
+                        <td th:text="${cart_item.getItem().getId()}">3번상품</td>
+                        <td>
+                            <a th:href="@{/item/view/{id}(id=${cart_item.item.id})}"
+                               th:text="${cart_item.getItem().getName()}"></a>
+                        </td>
+                        <td th:text="${cart_item.getCount()}">수량</td>
+                        <td th:text="${cart_item.getItem().getPrice() * cart_item.getCount()}">가격</td>
+                        <td th:text="${cart_item.getCreateDate()}">날짜</td>
+                        <td class="btn btn-outline-dark"><a th:href="@{/user/{id}/cart/{cart_itemId}/delete(id=${cart_item.getCart().getUser().id}, cart_itemId=${cart_item.getId()})}" style="text-decoration: none">삭제</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+          -->
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <div class="cartEmpty">
+          <p>장바구니가 비었어요.</p>
+         </div>
+        </form>
+       </div>
+      </div>
+
+</main>
+    
+    <th:block layout:fragment="myscripts">
+    </th:block>
+    
+</html>

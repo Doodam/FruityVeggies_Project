@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/base_layout}">
+
+<th:block layout:fragment="mycss">
+
+</th:block>
+
+<main layout:fragment="main">
+<style>
+body {
+  font-family: 14px/20px "Lato", Arial, sans-serif;
+  padding: 40px 0;
+  color: white;
+}
+
+.container {
+  margin: 0 auto;
+  width: 730px;
+  background: #c0c0c0;
+  border-radius: 5px;
+}
+
+.people-list {
+  width: 200px;
+  height: 100px;
+  float: left;
+  font-size: 18px;
+}
+
+.people-list input {
+  border-radius: 3px;
+  border: none;
+  padding: 14px;
+  color: white;
+  background: #b2b2b2;
+  width: 90%;
+  font-size: 14px;
+}
+.people-list .fa-search {
+  position: relative;
+  left: -25px;
+}
+.people-list ul {
+  padding: 20px;
+  height: 760px;
+}
+.people-list ul li {
+  padding-bottom: 20px;
+}
+.people-list img {
+  float: left;
+}
+.people-list .about {
+  float: left;
+  margin-top: 8px;
+}
+.people-list .about {
+  padding-left: 8px;
+}
+.people-list .status {
+  color: #92959E;
+}
+
+.message {
+  color: black;
+  padding: 18px 20px;
+  line-height: 26px;
+  font-size: 16px;
+  border-radius: 7px;
+  margin-bottom: 1px;
+  width: 90%;
+  position: relative;
+}
+
+.my-message {
+  background: orange;
+  margin-right: 0;
+  margin-left: auto;
+  text-align: right;
+}
+
+.other-message {
+  background: #d0c6ec;
+  margin-left: 0; 
+  text-align: left; 
+}
+
+.message.my-message {
+  text-align: right;
+}
+
+.message.other-message {
+  text-align: left;
+}
+
+.my-message .message-data {
+  text-align: right;
+}
+
+.chat-history {
+  padding: 5px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  border-bottom: 2px solid white;
+  overflow-y: scroll;
+  height: 575px;
+}
+
+.chat {
+  width: 530px;
+  float: left;
+  background: #F2F5F8;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #434651;
+}
+
+.chat .chat-header {
+  padding: 20px;
+  border-bottom: 2px solid white;
+}
+.chat .chat-header img {
+  float: left;
+}
+.chat .chat-header .chat-about {
+  float: left;
+  padding-left: 10px;
+  margin-top: 6px;
+}
+.chat .chat-header .chat-with {
+  font-weight: bold;
+  font-size: 30px;
+  color: orange;
+}
+.chat .chat-header .chat-num-messages {
+  color: #92959E;
+}
+.chat .chat-header .fa-star {
+  float: right;
+  color: #D8DADF;
+  font-size: 20px;
+  margin-top: 12px;
+ 
+}
+
+.chat .chat-message textarea {
+  width: 100%;
+  border: none;
+  padding: 10px 20px;
+  font-family: 14px/22px "Lato", Arial, sans-serif;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  resize: none;
+}
+
+.chat .chat-message button {
+  float: right;
+  color: #a4b6d7;
+  font-size: 25px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #F2F5F8;
+}
+
+.chat .chat-message button:hover {
+  color: black;
+}
+
+.chat-header button {
+  float: right;
+  color: orange;
+  font-size: 25px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  background: #F2F5F8;
+}
+
+.online, .offline, .me {
+  margin-right: 3px;
+  font-size: 10px;
+}
+
+.online {
+  color: #d0c6ec;
+}
+
+.me {
+  color: #b5d6e8;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+</style>
+
+
+<div class="container clearfix">
+	  
+    <!-- 참여한 회원 list -->
+      <ul class="people-list">
+        <h3>채팅중인 회원</h3>
+        <li th:each="user : ${username}" class="dropdown-item" th:text="${user}"></li>
+      </ul>
+
+    <div class="chat">
+      <div class="chat-header clearfix">
+        <div class="chat-with" th:text="${room.name}">
+		</div>
+        <div class="chat-about">
+		</div>
+        <button type="button" class="btn float-right" id="button-exit">EXIT</button>
+      </div>
+
+      <div class="chat-history" id="msgArea">
+        <!-- 메세지가 동적으로 추가될 부분 -->
+      </div>
+
+      <!-- 메세지 입력창 -->
+      <div class="chat-message clearfix">
+        <textarea name="message-to-send" id="message-to-send" placeholder="메시지를 입력하세요" rows="3"></textarea>
+        <button type="button" id="button-send">SEND</button>
+      </div> <!-- end chat-message -->
+
+    </div> <!-- end chat -->
+
+  </div> <!-- end container -->
+  
+
+	<div class="d-none">
+		<span id="chatroomName" th:text="${room.name}"></span>
+		<span id="chatroomRoomId" th:text="${room.roomId}"></span>
+		<span id="chatroomUsername" th:text="${username}"></span>
+		<!--<span id="chatroomCsrfToken" th:text="${_csrf.token}"></span>-->
+	</div>
+	
+	
+<th:block layout:fragment="myscripts">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script th:src="@{/js/chat/sockjs.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script th:src="@{/js/chat/chatroom.js}"></script>
+</th:block>
+
+ </main>
+    
+</html>

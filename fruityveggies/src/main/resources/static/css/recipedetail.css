@@ -1,0 +1,164 @@
+@charset "UTF-8";
+#order_wrap {
+    width:1000px; margin:0 auto; padding-top:100px;
+    display:flex; flex-flow:row nowrap;
+    justify-content:space-around;
+}
+#order_wrap .left {width:500px; padding-right:10px;}
+#order_wrap .left img {width:100%;}
+#order_wrap .right {width:calc(100% - 550px); padding-left: 10px;}
+#order_wrap .right .top {}
+#order_wrap .right .top h1 {font-size:2rem; padding:20px 0;}
+#order_wrap .right .top > p:nth-child(2) {
+    color:#aaa; margin-bottom:10px; padding-bottom:10px;
+    border-bottom:1px solid #dadada;
+}
+#order_wrap .right .top dl {
+    display:flex; flex-flow:row wrap;
+}
+#order_wrap .right .top dl dt {width:30%;}
+#order_wrap .right .top dl dd {width:70%;}
+#order_wrap .right .top dl dt, #order_wrap .right .top dl dd {padding-top:10px 0;}
+#order_wrap .right .top dl dd.price {font-weight:700;}
+#order_wrap .right .top .number {
+    display:flex; flex-flow:row nowrap;
+    justify-content:space-between;
+    align-items:center; padding:10px 0; margin:10px 0;
+    border-bottom:1px solid #ddd;
+    border-top:1px solid #ddd;
+}
+#order_wrap .right .top .number .order_name {padding-top: 10px;}
+#order_wrap .right .top .number .order_number {}
+#order_wrap .right .top .number .order_number input[name=num] {
+    background: #fff; width:50px; padding:5px;
+    border:1px solid #ddd;
+}
+#order_wrap .right .top .number .order_number .number_price {}
+#order_wrap .right .top .total_price {
+    display:flex; flex-flow:row nowrap;
+    justify-content:space-between;
+    padding:20px 0;
+}
+#order_wrap .right .top .action {padding-left: 20px;}
+#order_wrap .right .top .action #button {background-color: rgb(200, 227, 204); }
+#order_wrap .right .top .action input {text-align: center; width:30px;}
+#order_wrap .right .top .action label {padding-left: 200px;}
+#order_wrap .right .top .total_price p {}
+#order_wrap .right .total_price p:nth-child(1) {}
+#order_wrap .right .top .total_price .result_price {color: #cc0202; font-size:1.2rem;}
+#order_wrap .right .bottom {
+    text-align:right; padding:20px 0;
+}
+#order_wrap .right .bottom button {
+    padding:15px 0; 
+}
+#order_wrap .right .bottom #order_btn {width:150px; background: #cc0202; color: #fff;}
+#order_wrap .right .bottom #cart_btn {width:120px; background: #a9a9a9; color: #fff;}
+#order_wrap .right .bottom #like_btn {width:100px; background: #ddd;}
+
+.uploadBtn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadBtn button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.uploadBtn button:hover {
+  background-color: #45a049;
+}
+
+/*좋아요*/
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.bottom {
+    margin-top: 200px;
+}
+
+.text-15px {
+    font-size: 15px;
+}
+
+.text-gray{
+    color: #333;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+button img {
+    width: 24px;
+    height: 24px;
+}
+
+.h-14px {
+    height: 14px;
+}
+
+.bg-gray-0 {
+    background-color: #f0f0f0;
+}
+
+.sm-my-48px {
+    margin-top: 48px;
+    margin-bottom: 48px;
+}
+
+.like-img {
+    width: 24px;
+    height: 24px;
+    
+}
+
+.liked{
+    background-color: #FF0000;
+}
+
+
+
+.centered-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+}
+
+
+.outer-wrapper {
+  display: flex;
+  justify-content: center;
+}

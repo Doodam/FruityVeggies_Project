@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+
+	<main layout:fragment="main">
+
+    	<div class="my-2 card">
+	    <div class="card-header text-center">
+	    	<h1>장바구니</h1>
+	    </div>
+	    </div>	    
+	    
+	    <div class="card-body">
+	    	<table class="table table-hover" style="border-collapse: collapse;">
+	    		<thead>
+			    	<tr>
+			    		<th style="text-align: center;">선택</th>
+                        <th style="text-align: center;">이미지</th>
+			    		<th>상품이름</th>
+			    		<th>수량</th>
+			    		<th>합계</th>
+			    		<th>배송비</th>
+			    		<th>적립급</th>
+			    	</tr>		
+    			</thead>
+	    		<tbody>
+	    				
+	    			<tr th:each="cart : ${lists}">
+	    				<td style="text-align: center; ">
+	    					<input type="checkbox" id="cartCheckbox" name="cartCheckbox" th:value="${cart.id}">
+    					</td> 
+	    				<td style="width: 210px; text-align: center;">
+	    					<img th:src="${cart.main_image_path}" style="width: 100px; " >
+	    				</td>
+	    				<td th:text="${cart.name}"></td>
+	    				<td>
+	    					<input type="number" th:id="'cntNum_'+${cart.price}" th:name="'cntNum_'+${cart.price}" min="1" max="10" step="1" th:value="${cart.cnt}">
+	    				</td>
+	    				<td th:id="'opTotal_'+${cart.price}" th:text="${cart.price * cart.cnt}" th:name="'opTotal_'+${cart.price}"></td>
+	    				<td >2000원</td>
+	    				<td th:id="'reserves_'+${cart.price}" th:text="${cart.price * 0.05}"></td>
+	    			</tr>
+	    		</tbody>
+	    	</table>
+	    	<div class="bottom">
+                <button type="button" id="chk_del">선택 삭제</button>
+            </div>
+	    	<div style="text-align: right;">
+		    	<p>최종가격 : 
+		    		<label id="total_price">10000</label>
+	    		</p>
+	    	</div>
+			<div class="bottom">
+                <button type="button" id="bill_btn">결제하러 가기</button>
+            </div>
+	    </div>
+</div>
+<script th:inline="javascript">
+    var listsData = /*[[ ${lists} ]]*/ []; // Thymeleaf 템플릿 엔진 사용 예시
+    // 이제 listsData 배열을 자바스크립트에서 사용할 수 있습니다.
+</script>
+	</main>
+	<th:block layout:fragment="myscripts">
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="/js/cart.js"></script>
+    </th:block>
+</html>

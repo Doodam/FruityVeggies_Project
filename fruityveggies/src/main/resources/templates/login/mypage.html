@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layout/base_layout}">
+    <th:block layout:fragment="mycss">
+    
+    </th:block> 
+    
+    <main layout:fragment="main" style="min-height: 100vh;">
+    
+
+    <div class="text-center">
+        
+        <h1>사용자 정보</h1>
+        <p>아이디: <span th:if="${session.email}" th:text="${session.email}"></span>
+                 <span th:unless="${session.email}" sec:authentication="name"></span></p> 
+        
+        <p th:if="${session.email}">가입경로: <span th:text="${session.oauthType}"></span></p>
+        
+        <div class="d-flex flex-column align-items-center">
+            <div class="mb-48px mt-24px h-14px bg-gray-0"></div>
+            <h1>최신 주문내역</h1>
+            
+            <a class="btn btn-success me-2 mb-3 " th:href="@{orderhistory}">주문내역 보기
+            <img th:src="@{/img/right.png}" style="width: 20px; height: 20px; margin-left: 100px;">
+            </a>
+           
+            <a class="btn btn-success me-2 mb-3 " th:href="@{#}">내가 올린 후기
+            <img th:src="@{/img/right.png}" style="width: 20px; height: 20px; margin-left: 100px;">
+            </a>
+            
+            
+    <svg class="bi ms-1" width="20" height="20"><use xlink:href="#arrow-right-short"></use></svg>
+</a>
+            
+          
+            
+            </div>
+            </div>
+            
+    </main>
+    
+    <th:block layout:fragment="myscripts">
+    </th:block>
+    
+</html>

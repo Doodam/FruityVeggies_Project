@@ -1,0 +1,11 @@
+.themed-grid-col {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  background-color:white;
+}
+
+.themed-container {
+  padding: .75rem;
+  margin-bottom: 1.5rem;
+  background-color:whtie;
+}

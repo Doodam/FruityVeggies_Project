@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8">
+<title>정기배송</title>
+<link
+ href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+ rel="stylesheet"
+ integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+ crossorigin="anonymous" />
+<link rel="stylesheet" href="/css/rescueOrder.css" />
+
+</head>
+
+
+
+
+<main id=rescueOrder>
+<form method="post" action="/rescueorder/rescue_order2" style="margin: auto; width: 600px; align-items: center; display: flex;">
+ <div class="my-2 card" id="card1" style="margin: auto; width: 450px; background-color: rgb(232, 247, 230); padding-top: 0.5px; padding-bottom: 12px; display: block;" >
+  <div class="card-body"  >
+  	
+   <!-- <form method="post" style="margin: auto; width: 400px;"> -->
+
+    <div style="display: flex; align-items: center;">
+    <svg id="back1" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+    </svg>
+    <h1 class="font my-5" style="font-size: 16px; padding-top: -60px; text-align: center; padding-left: 30px;"><b>채소 플랜</b> > 배송 정보 입력 > 결제</h1>
+	</div>
+     <hr> 
+     <div class="rounded-full bg-brown-600 py-6px px-8px">
+     <p class="font-semibold" style="color: green; font-size: 20px; margin-top: -20px;">01</p>
+     </div>
+     <h1 class="font-bold"  style="font-size: 26px; margin-top: -20px; margin-bottom: 24px; padding-left: 60px;" >박스 크기 선택</h1>
+    
+    <div class="flex justify-around gap-10px">
+    	<div class="flex w-full flex-col" style="padding-right: 5px;">
+    		<div id="singleBox" class="relative cursor-pointer\overflow-hidden rounded-[10px] border-2 border-brand-1 border-success" onclick="handleBoxClick('single')" style="border-color:  #9FE2BF; border-width: 4px; border-style: solid; display: block;">
+    			<div class="overflow-hidden bg-cover bg-center" style="padding-top: 75%; background-image: url(&quot;https://d3cpiew7rze14b.cloudfront.net/assets/buynow/One/standard_NudMYZNp4.png&quot;);"></div>
+    			<div class="overflow-hidden rounded-b-[10px]  bg-white p-16px " >
+    				<p class="text-18px text-gray-800 font-bold">싱글 박스</p>
+    				<div class="flex items-center justify-between">
+    					<p class="mt-2px flex items-end font-semibold text-brand-1" style="color: black;">
+    						<span class="text-16px">15,500원</span>
+    						<span class="text-14px font-medium">/회차</span>
+    				    </p>
+    				    <div class="form-check" >
+  							<input class="form-check-input" type="radio" name="boxsize" id="exampleRadios1" value="singlebox"  checked>
+  							<label class="form-check-label" for="exampleRadios1" style="color: #9FE2BF;">
+  							</label>
+						</div>
+    				 </div>
+    			</div>
+    		</div>
+    	</div>
+    	
+    	
+    	<div class="flex w-full flex-col" style="padding-left: 5px;">
+    		<div id="familyBox" class="relative cursor-pointer overflow-hidden rounded-[10px] border-2 border-transparent" onclick="handleBoxClick('family')" style="border-color:  #9FE2BF; border-width: 4px; border-style: none;">
+    		<div class="overflow-hidden bg-cover bg-center" style="padding-top: 75%; background-image: url(&quot;https://d3cpiew7rze14b.cloudfront.net/assets/buynow/One/jumbo_WPegM8Uzz.png&quot;);"></div>
+    		<div class="overflow-hidden rounded-b-[10px] border-b border-l border-r bg-white p-16px border-gray-200">
+    			<p class="text-18px text-gray-800 ">패밀리 박스</p>
+    			<div class="flex items-center justify-between">
+    				<p class="mt-2px flex items-end font-semibold text-brand-1" style="color: black;">
+    					<span class="text-16px">25,000원</span>
+    					<span class="text-14px font-medium">/회차</span>
+    				</p>
+    				<div class="form-check">
+  					<input class="form-check-input" type="radio" name="boxsize" id="exampleRadios2" value="familybox">
+  						<label class="form-check-label" for="exampleRadios2">
+  						</label>
+					</div>
+    			</div>
+    		</div>
+    		</div>
+    	</div>
+    </div>
+    
+    <div class="w-full" style="height: 16px;"></div>
+    	
+    	<ul class="single-text">
+    		<li>1~2인 가구에게 적합해요.</li>
+    		<li>양파 2개, 토마토 2개처럼 품목마다 조금씩 보내드려요.</li>
+    	</ul>
+    	<ul class="family-text" style="display: none;">
+    		<li>3~4인 가구에게 적합해요.</li>
+    		<li>양파 4개, 토마토 5개처럼 품목마다 조금씩 보내드려요.</li>
+        </ul>
+
+	<div class="w-full" style="height: 16px;"></div>
+	
+	<div class="px-8px">
+		<div class="flex space-x-6px">
+		<img src="https://d3cpiew7rze14b.cloudfront.net/assets/buynow/One/Frame_5051_gYIcxV4Yn.svg" alt="new button" class="">
+			<h5 class="text-16px font-semibold text-gray-800">채소박스 품목 바꾸기</h5>
+		</div>
+		
+		<div class="w-full" style="height: 6px;"></div>
+		
+		<h6 class="text-14px font-medium leading-5 text-gray-600">구출된 품목 중 원하는 구성으로 자유롭게 바꿀 수 있어요.</h6>
+	</div>
+	
+	<div class="w-full" style="height: 10px;"></div>
+	<hr>
+	
+	<div class="px-8px">
+		<h5 class="text-16px font-semibold text-gray-800">레시피 페이퍼 제공</h5>
+		<div class="w-full" style="height: 6px;"></div>
+		<h6 class="text-14px font-medium leading-5 text-gray-600">더 즐거운 채소 생활을 위해 레시피와 보관법을 함께 알려드려요.</h6>
+	</div>
+	
+	
+	<div class="w-full" style="height: 50px;"></div>
+    
+    <button class="btn btn-long" id="buyBtn1" style="background-color: #9FE2BF;">다음</button> 
+
+   <!-- </form> -->
+  </div>
+ </div>
+ 
+ <div class="my-2 card2" id="card2" style="margin: auto; width: 450px; background-color: rgb(232, 247, 230); padding-top: 0.5px; padding-bottom: 12px; display: none;">
+  <div class="card-body2" >
+   <!-- <form method="post" style="margin: auto; width: 400px; "> -->
+
+    
+    <div style="display: flex; align-items: center;">
+    <svg id="back2" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+    </svg>
+    <h1 class="font my-5" style="font-size: 16px; padding-top: -60px; text-align: center; padding-left: 30px;"><b>채소 플랜</b> > 배송 정보 입력 > 결제</h1>
+	</div>
+     <hr> 
+     <div class="rounded-full bg-brown-600 py-6px px-8px">
+     	<p class="font-semibold" style="color: green; font-size: 20px; margin-top: -20px; padding-left: 10px;"  >02</p>
+     </div>
+     <h1 class="font-bold"  style="font-size: 26px; margin-top: -20px; margin-bottom: 24px; padding-left: 60px;">배송 주기 선택</h1>
+    
+    <div class="w-full" style="height: 40px;"></div>
+    
+    <div class="grid mx-5" style=" width: 400px; padding-left: 20px;">
+    	<input type="radio" class="btn-check" name="weeksize" id="option1" autocomplete="off" value="1주기" checked >
+			<label class="btn btn-light btn-outline-success col-3 mx-auto" for="option1">1주</label>
+    	<input type="radio" class="btn-check" name="weeksize" id="option2" autocomplete="off" style="padding-left: 100px;" value="2주기">
+			<label class="btn btn-light btn-outline-success col-3 mx-auto" for="option2">2주</label>
+    	<input type="radio" class="btn-check" name="weeksize" id="option3" autocomplete="off" value="3주기">
+			<label class="btn btn-light btn-outline-success col-3 mx-auto" for="option3">4주</label>
+    </div>
+    
+    <div class="w-full" style="height: 40px;"></div>
+    	
+    	<ul class="list-disc pl-16px text-14px font-medium leading-5 text-gray-600">
+    		<li>75%의 고객분들이 '2주' 간격을 선택했어요.</li>
+    		<li>배송 주의 내 일정에 맞게 미루거나 당길 수 있어요.</li>
+    	</ul>
+
+	<div class="w-full" style="height: 16px;"></div>
+	
+	
+		
+		<div class="w-full" style="height: 6px;"></div>
+		
+		
+	
+	<div class="w-full" style="height: 10px;"></div>
+	
+	
+	<div class="w-full" style="height: 200px;"></div>
+    
+    <button class="btn btn-long" id="buyBtn2" style="background-color: #9FE2BF; padding-left: 15px; padding-right: 15px;">다음</button> 
+
+   <!-- </form> -->
+  </div>
+ </div>
+ 
+
+
+<div class="my-2 card3" id="card3" style="margin: auto; width: 450px; background-color: rgb(232, 247, 230); padding-top: 0.5px; padding-bottom: 12px; display: none;">
+  <div class="card-body3" >
+   <!-- <form method="post" style="margin: auto; width: 400px; "> -->
+
+    
+     <div style="display: flex; align-items: center;">
+    <svg id="back3" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+    </svg>
+    <h1 class="font my-5" style="font-size: 16px; padding-top: -60px; text-align: center; padding-left: 30px;"><b>채소 플랜</b> > 배송 정보 입력 > 결제</h1>
+	</div> 
+     <hr> 
+     <div class="rounded-full bg-brown-600 py-6px px-8px">
+     	<p class="font-semibold" style="color: green; font-size: 20px; margin-top: -20px; padding-left: 10px;" >03</p>
+     </div>
+     <h1 class="font-bold"  style="font-size: 26px; margin-top: -20px; margin-bottom: 24px; padding-left: 60px;">비선호 품목 선택</h1>
+    
+    <div class="w-full" style="height: 16px;"></div>
+    
+    <h5 class="text-16px leading-6 text-gray-800" style="padding-left: 20px;">비선호 채소는 채소박스에서 미리 제외해드려요.</h5>
+    
+    <div class="w-full" style="height: 16px;"></div>
+    
+    <img src="https://d3cpiew7rze14b.cloudfront.net/assets/svg/buynow-except-vegetable.svg?w=1024" alt="파프리카" class="mx-4" style="padding-left: 20px;">
+    	
+    <div class="w-full" style="height: 30px;"></div>	
+    	
+  
+  <!-- Button trigger modal -->
+	<button type="button" class="btn btn-light btn-outline-success col-9 mx-5" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  		제외할 품목 고르기 &nbsp;&nbsp;&nbsp;>
+	</button>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      <div>
+        <button type="button" class="btn-close d-md-flex" data-bs-dismiss="modal" aria-label="Close" ></button>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel" ><b>제외할 품목 고르기</b></h1>
+		<br>
+       <div>
+         <p> 비선호 품목이 구출 품목에 포함되면,<br>
+        	동일 금액의 다른 품목을 대신 보내드려요.<br></p>
+         <p style="color: green;">최대 3개 선택 가능</p>
+       </div>
+      </div>
+      </div>
+
+      <div class="modal-body">
+        <p>근채류</p>
+        <div style="padding-left: 40px;">
+        <div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="감자">
+  			<label class="form-check-label" for="inlineCheckbox1">감자</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="당근">
+  			<label class="form-check-label" for="inlineCheckbox2">당근</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="고구마">
+  			<input type="hidden" id="resId" name="resId" th:value="${resId}">
+  			<label class="form-check-label" for="inlineCheckbox3">고구마</label>
+		</div>
+		<br>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="비트">
+  			<label class="form-check-label" for="inlineCheckbox4">비트</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="무">
+  			<label class="form-check-label" for="inlineCheckbox5">무</label>
+		</div>
+		</div>
+		
+		<hr>
+      	<p>과채류</p>
+      	<div style="padding-left: 40px;">
+        <div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox6" name="dislikeList" value="옥수수">
+  			<label class="form-check-label" for="inlineCheckbox6">옥수수</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox7" name="dislikeList" value="단호박">
+  			<label class="form-check-label" for="inlineCheckbox7">단호박</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox8" name="dislikeList" value="파프리카">
+  			<label class="form-check-label" for="inlineCheckbox8">파프리카</label>
+		</div>
+		<br>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox9" name="dislikeList" value="피망">
+  			<label class="form-check-label" for="inlineCheckbox9">피망&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox10" name="dislikeList" value="애호박">
+  			<label class="form-check-label" for="inlineCheckbox10">애호박</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox11" name="dislikeList" value="가지">
+  			<label class="form-check-label" for="inlineCheckbox11">가지</label>
+		</div>
+		<br>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox12" name="dislikeList" value="오이">
+  			<label class="form-check-label" for="inlineCheckbox9">오이&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox13" name="dislikeList" value="토마토">
+  			<label class="form-check-label" for="inlineCheckbox10">토마토</label>
+		</div>
+		</div>
+		<hr>
+      	<p>과일류</p>
+      	<div style="padding-left: 40px;">
+        <div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox14" name="dislikeList" value="사과">
+  			<label class="form-check-label" for="inlineCheckbox14">사과&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox15" name="dislikeList" value="참외">
+  			<label class="form-check-label" for="inlineCheckbox15">참외&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox16" name="dislikeList" value="감귤/만감류">
+  			<label class="form-check-label" for="inlineCheckbox16">감귤/만감류</label>
+		</div>
+		<br>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox17" name="dislikeList" value="키위">
+  			<label class="form-check-label" for="inlineCheckbox17">키위&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox18" name="dislikeList" value="레몬">
+  			<label class="form-check-label" for="inlineCheckbox18">레몬&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox19" name="dislikeList" value="배">
+  			<label class="form-check-label" for="inlineCheckbox19">배&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		</div>
+		<hr>
+      	<p>기타</p>
+      	<div style="padding-left: 40px;">
+        <div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox20" name="dislikeList" value="콩류">
+  			<label class="form-check-label" for="inlineCheckbox20">콩류&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox21" name="dislikeList" value="마늘">
+  			<label class="form-check-label" for="inlineCheckbox21">마늘&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox22" name="dislikeList" value="매운고추">
+  			<label class="form-check-label" for="inlineCheckbox22">매운고추</label>
+		</div>
+		<br>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox23" name="dislikeList" value="대파">
+  			<label class="form-check-label" for="inlineCheckbox23">대파&nbsp;&nbsp;&nbsp;</label>
+		</div>
+		<div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox24" name="dislikeList" value="버섯전체">
+  			<label class="form-check-label" for="inlineCheckbox24">버섯전체</label>
+		</div>
+		</div>
+		<hr>
+      	<p><b>다 좋아요</b></p>
+      	<div style="padding-left: 40px;">
+        <div class="form-check form-check-inline">
+  			<input class="form-check-input" type="checkbox" id="inlineCheckbox25" name="dislikeList" 
+  			value="제외품목없어요">
+  			<label class="form-check-label" for="inlineCheckbox25">제외할 품목이 없어요</label>
+		</div>
+		</div>
+		<div class="w-full" style="height: 16px;"></div>
+		
+		<button type="button" class="btn btn-long" id="buyBtn5" style="background-color: #9FE2BF;" aria-label="Close" data-bs-dismiss="modal">선택 완료</button>
+      </div>
+      
+     </div>
+      
+    </div>
+  </div>
+
+
+	<div class="w-full" style="height: 30px;"></div>
+	
+	<ul class="list-disc pl-16px text-14px font-medium leading-5 text-gray-600">
+		<li>너무 고민할 필요 없어요!</li>
+		<li>배송 주 구출 목록을 확인하고, 직접 품목을 바꿀 수 있어요.</li>
+	</ul>
+	
+	<div class="w-full" style="height: 100px;"></div>
+    
+    <button class="btn btn-long" id="buyBtn3" style="background-color: #9FE2BF;  padding-left: 15px; padding-right: 15px;">다음</button> 
+
+   <!-- </form> -->
+  </div>
+ </div>
+ 
+ 
+ 
+ <div class="my-2 card4" id="card4" style="margin: auto; width: 450px; background-color: rgb(232, 247, 230); padding-top: 0.5px; padding-bottom: 12px; display: none;">
+  <div class="card-body4" >
+   <!-- <form method="post" action="/rescueorder/rescue_order2" style="margin: auto; width: 400px;"> -->
+    
+    <div style="display: flex; align-items: center;">
+    <svg id="back4" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+    </svg>
+    <h1 class="font my-5" style="font-size: 16px; padding-top: -60px; text-align: center; padding-left: 30px;">채소 플랜 > <b>배송 정보 입력</b> > 결제</h1>
+	</div>
+     <h1 class="font-bold my-4"  style="font-size: 26px; padding-left: 60px;">배송 정보</h1>
+    
+
+    <div class="my-2" style="padding-left: 10px; padding-right: 10px;">
+     <label class="form-label" for="orderName">받는 사람</label>
+     <!-- data-testid="renewal-textfield" -->
+     <input class="form-control" id="orderName" type="text"
+       name="recipient" placeholder="이름을 입력해주세요." />
+    </div>
+    <div class="my-2" style="padding-left: 10px; padding-right: 10px;">
+     <label class="form-label" for="orderPhone">휴대폰 번호</label> <input
+      class="form-control" id="orderPhone" type="text" name="phone"
+      placeholder="휴대폰 번호를 입력해주세요." />
+    </div>
+    
+    <div class="my-2" style="padding-left: 10px; padding-right: 10px;">
+      <label class="form-label" for="orderAddress">주소</label>
+      <div class="card-body fw-bold" style="display: flex; align-items: center;">
+                <main class="my-2">
+                 <div style="display: flex; align-items: center;">
+                    <input class="form-control" type="text" id="sample4_postcode" style="width: 330px; margin-right: 10px;"
+                        placeholder="주소를 검색하세요" disabled=""> <input type="button"
+                        class="btn btn-success"
+                        onclick="sample4_execDaumPostcode()"
+                        value="검색">
+                 </div>
+                 <div class="w-full" style="height: 10px;"></div> 
+                 <input class="form-control" style="width: 400px;"
+                        type="text" id="address1" name="address"
+                        placeholder="도로명주소" size="60">
+                    <input class="form-control" type="hidden" id="sample4_jibunAddress" style="width: 400px;"
+                        placeholder="지번주소" size="60"> <span
+                        id="guide" style="color: #999; display: none"></span>
+                        <div class="w-full" style="height: 5px;"></div> 
+                    <input class="form-control" type="text" id="address2" name="addressdetail" style="width: 400px;"
+                        placeholder="상세주소를 입력하세요" size="60"><br> <input
+                        type="hidden" id="sample4_extraAddress"
+                        placeholder="참고항목" size="60"> <input
+                        type="hidden" id="sample4_engAddress"
+                        placeholder="영문주소" size="60"><br>
+                    <script
+                        src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+                    <script>
+                                                                                    
+                                                                                    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
+                                                                                    function sample4_execDaumPostcode() {
+                                                                                        new daum.Postcode(
+                                                                                                {
+                                                                                                    oncomplete : function(
+                                                                                                            data) {
+                                                                                                        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                                                                                                        // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+                                                                                                        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                                                                                                        var roadAddr = data.roadAddress; // 도로명 주소 변수
+                                                                                                        var extraRoadAddr = ''; // 참고 항목 변수
+
+                                                                                                        // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                                                                                                        // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                                                                                                        if (data.bname !== ''
+                                                                                                                && /[동|로|가]$/g
+                                                                                                                        .test(data.bname)) {
+                                                                                                            extraRoadAddr += data.bname;
+                                                                                                        }
+                                                                                                        // 건물명이 있고, 공동주택일 경우 추가한다.
+                                                                                                        if (data.buildingName !== ''
+                                                                                                                && data.apartment === 'Y') {
+                                                                                                            extraRoadAddr += (extraRoadAddr !== '' ? ', '
+                                                                                                                    + data.buildingName
+                                                                                                                    : data.buildingName);
+                                                                                                        }
+                                                                                                        // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                                                                                                        if (extraRoadAddr !== '') {
+                                                                                                            extraRoadAddr = ' ('
+                                                                                                                    + extraRoadAddr
+                                                                                                                    + ')';
+                                                                                                        }
+
+                                                                                                        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                                                                                                        document
+                                                                                                                .getElementById('sample4_postcode').value = data.zonecode;
+                                                                                                        document
+                                                                                                                .getElementById("address1").value = roadAddr;
+                                                                                                        document
+                                                                                                                .getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                                                                                                        document
+                                                                                                                .getElementById("sample4_engAddress").value = data.addressEnglish;
+
+                                                                                                        // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+                                                                                                        if (roadAddr !== '') {
+                                                                                                            document
+                                                                                                                    .getElementById("sample4_extraAddress").value = extraRoadAddr;
+                                                                                                        } else {
+                                                                                                            document
+                                                                                                                    .getElementById("sample4_extraAddress").value = '';
+                                                                                                        }
+
+                                                                                                        var guideTextBox = document
+                                                                                                                .getElementById("guide");
+                                                                                                        // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+                                                                                                        if (data.autoRoadAddress) {
+                                                                                                            var expRoadAddr = data.autoRoadAddress
+                                                                                                                    + extraRoadAddr;
+                                                                                                            guideTextBox.innerHTML = '(예상 도로명 주소 : '
+                                                                                                                    + expRoadAddr
+                                                                                                                    + ')';
+                                                                                                            guideTextBox.style.display = 'block';
+
+                                                                                                        } else if (data.autoJibunAddress) {
+                                                                                                            var expJibunAddr = data.autoJibunAddress;
+                                                                                                            guideTextBox.innerHTML = '(예상 지번 주소 : '
+                                                                                                                    + expJibunAddr
+                                                                                                                    + ')';
+                                                                                                            guideTextBox.style.display = 'block';
+                                                                                                        } else {
+                                                                                                            guideTextBox.innerHTML = '';
+                                                                                                            guideTextBox.style.display = 'none';
+                                                                                                        }
+                                                                                                    }
+                                                                                                })
+                                                                                                .open();
+                                                                                    }
+                                                                                </script>
+    </div>
+  
+ <div class="my-2" style="padding-left: 10px; padding-right: 10px;">
+    <label class="form-label" for="orderRequest">배송 요청 사항(선택)</label>
+    <select class="form-select" id="orderRequest" name="orderRequest">
+        <option value="선택안함">선택안함</option>
+        <option value="문 앞에 놓아주세요">문 앞에 놓아주세요</option>
+        <option value="문 앞에 놓아주시고 벨을 누르지 말아주세요.">문 앞에 놓아주시고 벨을 누르지 말아주세요.</option>
+        <option value="경비실에 맡아주세요">경비실에 맡아주세요</option>
+        <option value="부재 시 전화 또는 문자 주세요.">부재 시 전화 또는 문자 주세요.</option>
+        <option value="배송 전에 연락주세요.">배송 전에 연락주세요.</option>
+        <option value="직접 입력">직접 입력</option>
+    </select>
+    <div id="inputContainer" style="display: none; padding-left: 10px; padding-right: 10px;">
+        <input class="form-control my-2" id="customInput" type="text" name="customInput" placeholder="배송 요청사항을 입력하세요." />
+    </div>
+</div>
+
+    <div class="w-full" style="height: 80px;"></div>
+    <br>
+    <button class="btn btn-long" id="buyBtn4" style="background-color: #9FE2BF;  padding-left: 15px; padding-right: 15px;">결제하기</button> 
+
+   
+  </div>
+ </div>
+ </form>
+</main>
+
+
+<script
+ src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+ integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+ crossorigin="anonymous"></script>
+ 
+ <script src="/js/rescue_order.js"></script>
+ 
+</html>
