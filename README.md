@@ -16,7 +16,7 @@
 
 ## 개요
 - 프로젝트 이름 : Fruity Veggies
-- 프로젝트 지속기간 : 2023.07.25 - 2023.08.24
+- 프로젝트 지속기간 : 2023.07.26 - 2023.08.24
 - 개발 엔진 및 언어 : Eclipse & JAVA(JDK 17) 
 - 개발 환경 : Spring Boot & Spring Security & Lombok & Oracle <br>
 　　　　　jQuery & Ajax & HTML / CSS / Java Script & Thymeleaf & Tosspayments 결제 api & Google, Naver, Kakao 로그인 api
